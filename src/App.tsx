@@ -337,8 +337,8 @@ export default function App() {
                </div>
                <p className="text-2xl font-serif font-black italic text-white/30 mb-10 leading-tight uppercase tracking-tight">Cuidando da vida animal com a precisão que a medicina exige.</p>
                <div className="flex gap-8">
-                  <a href="#" className="text-white/40 hover:text-primary transition-all transform hover:-translate-y-2"><InstagramIcon size={32} /></a>
-                  <a href="#" className="text-white/40 hover:text-primary transition-all transform hover:-translate-y-2"><FacebookIcon size={32} /></a>
+                  <a href="#" className="text-white/40 hover:text-primary transition-all transform hover:-translate-y-2"><Instagram size={32} /></a>
+                  <a href="#" className="text-white/40 hover:text-primary transition-all transform hover:-translate-y-2"><Facebook size={32} /></a>
                </div>
             </div>
 
