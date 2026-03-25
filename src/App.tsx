@@ -15,7 +15,6 @@ import {
   Instagram,
   Facebook,
   Quote,
-  Heart,
   Activity,
   Microscope,
   Baby,
@@ -43,8 +42,8 @@ const SERVICES = [
   {
     id: "01",
     title: "Medicina Diagnóstica",
-    description: "Equipamentos de imagem e exames laboratoriais de última geração para rápida precisão.",
-    image: "https://images.unsplash.com/photo-1579154238328-341ef9798583?q=80&w=800&auto=format&fit=crop",
+    description: "Laboratório próprio e imagens de alta resolução para diagnósticos rápidos e precisos.",
+    image: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=800&auto=format&fit=crop",
     special: "Alta Tecnologia"
   },
   {
@@ -65,7 +64,7 @@ const SERVICES = [
     id: "04",
     title: "Pediatria & Vacinação",
     description: "Cuidado amoroso e protocolos de imunização internacionais para filhotes.",
-    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1548129871-171884c3c970?q=80&w=800&auto=format&fit=crop",
     special: "Cuidado Inicial"
   },
   {
@@ -103,39 +102,6 @@ const FAQS = [
   }
 ];
 
-const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <div className="border-b border-primary/10 overflow-hidden">
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center py-6 text-left group transition-all"
-      >
-        <span className={`font-serif text-xl md:text-2xl font-bold transition-colors ${isOpen ? 'text-primary' : 'text-clinic-text'}`}>
-          {question}
-        </span>
-        <div className={`p-2 rounded-full transition-all ${isOpen ? 'bg-primary text-white rotate-180' : 'bg-primary/5 text-primary'}`}>
-          {isOpen ? <Minus size={20} /> : <Plus size={20} />}
-        </div>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden"
-          >
-            <p className="pb-8 text-lg text-clinic-text/70 leading-relaxed font-bold">
-              {answer}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -145,7 +111,7 @@ export default function App() {
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
+    const timer = setTimeout(() => setIsLoading(false), 2000);
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -161,106 +127,104 @@ export default function App() {
       {/* Loading */}
       <AnimatePresence>
         {isLoading && (
-          <motion.div exit={{ opacity: 0 }} className="fixed inset-0 z-[200] bg-white flex items-center justify-center">
-             <h2 className="font-serif text-4xl font-bold tracking-[0.4em] text-primary uppercase animate-pulse">{CLIENT_CONFIG.name}</h2>
+          <motion.div exit={{ opacity: 0 }} className="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center">
+             <div className="text-6xl mb-4">🐾</div>
+             <h2 className="font-serif text-3xl font-bold tracking-[0.4em] text-primary uppercase animate-pulse">{CLIENT_CONFIG.name}</h2>
           </motion.div>
         )}
       </AnimatePresence>
 
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-primary z-[100] origin-left" style={{ scaleX }} />
 
-      {/* Nav */}
-      <nav className={`fixed w-full z-[80] transition-all duration-500 ${isScrolled ? 'bg-white/95 backdrop-blur-xl py-4 shadow-xl' : 'bg-transparent py-10'}`}>
+      {/* WhatsApp Fixed Mobile/Desktop */}
+      <a href={whatsappUrl} target="_blank" rel="noreferrer" className="fixed bottom-6 right-6 z-[95] bg-[#25D366] text-white p-5 rounded-full shadow-2xl animate-pulse-whatsapp hover:scale-110 transition-transform">
+        <WhatsAppIcon size={32} />
+      </a>
+
+      {/* Navigation */}
+      <nav className={`fixed w-full z-[80] transition-all duration-500 ${isScrolled ? 'bg-white/95 backdrop-blur-xl py-3 shadow-xl' : 'bg-transparent py-8'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <a href="#início" className="flex items-center gap-3">
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${isScrolled ? 'bg-primary text-white' : 'bg-white text-primary shadow-xl'}`}>
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-colors ${isScrolled ? 'bg-primary text-white' : 'bg-white text-primary'}`}>
               <PawPrint size={24} />
             </div>
-            <span className="font-serif text-4xl font-bold tracking-tighter text-clinic-text uppercase">{CLIENT_CONFIG.name}</span>
+            <span className="font-serif text-3xl font-bold tracking-tight text-clinic-text uppercase">{CLIENT_CONFIG.name}</span>
           </a>
           <div className="hidden lg:flex items-center gap-10">
-            {['Sobre', 'Serviços', 'Diferenciais', 'Localização'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-[11px] uppercase tracking-widest font-bold text-clinic-text/70 hover:text-primary transition-colors">{item}</a>
+            {['Início', 'Serviços', 'Sobre', 'Localização'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-[10px] uppercase tracking-[0.3em] font-bold text-clinic-text/70 hover:text-primary transition-colors">{item}</a>
             ))}
-            <a href={whatsappUrl} className="bg-primary text-white h-14 px-10 text-[10px] uppercase font-bold tracking-widest rounded-2xl flex items-center gap-2 hover:bg-black transition-all shadow-xl">
-              Falar Conosco
-            </a>
+            <a href={whatsappUrl} className="btn-primary h-12 px-8 text-[10px] uppercase font-bold rounded-xl shadow-lg">Agendar Consulta</a>
           </div>
-          <button className="lg:hidden text-clinic-text bg-white/50 p-3 rounded-2xl" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-             <Menu size={28} />
+          <button className="lg:hidden text-clinic-text p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </nav>
 
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 50 }} className="fixed inset-0 z-[75] bg-white flex flex-col items-center justify-center gap-10 p-12 lg:hidden">
+            {['Início', 'Serviços', 'Sobre', 'Localização'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsMobileMenuOpen(false)} className="text-3xl font-serif text-clinic-text uppercase font-bold">{item}</a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Hero */}
-      <section id="início" className="relative h-[95vh] flex items-center pt-24 overflow-hidden px-6 md:px-14">
+      <section id="início" className="relative h-[90vh] flex items-center pt-24 overflow-hidden px-6 md:px-14">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop" 
-            alt="Medical Hero" 
-            className="w-full h-full object-cover brightness-[0.7] transform scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent" />
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200" alt="Hero" className="w-full h-full object-cover brightness-[0.7]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <span className="text-xs uppercase tracking-[0.5em] font-bold text-primary mb-6 block">Referência em Medicina Animal</span>
-            <h1 className="text-6xl md:text-9xl font-serif text-clinic-text leading-[1.0] font-bold tracking-tighter mb-10">
-               A Saúde do <br /> <span className="text-primary italic font-medium">Seu Pet é Arte.</span>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+            <span className="text-xs uppercase tracking-[0.5em] font-bold text-primary mb-6 block">Especialistas em Medicina Animal</span>
+            <h1 className="text-5xl md:text-8xl font-serif text-clinic-text leading-tight font-bold tracking-tighter mb-10">
+               A Saúde do <br /> <span className="text-primary italic font-normal">Seu Pet é Arte.</span>
             </h1>
-            <div className="flex flex-col sm:flex-row gap-8 items-start">
-               <a href={whatsappUrl} className="bg-primary text-white rounded-2.5xl gap-4 shadow-2xl h-20 px-12 text-sm font-bold tracking-[0.2em] flex items-center justify-center hover:-translate-y-1 transition-all uppercase">
-                  Agendar Avaliação <ArrowRight size={20} />
-               </a>
-               <div className="flex items-center gap-4 py-4 px-6 border border-primary/10 rounded-2xl bg-white/30 backdrop-blur-sm">
+            <div className="flex flex-col sm:flex-row gap-6">
+               <a href={whatsappUrl} className="btn-primary h-16 px-12 text-sm shadow-xl">AGENDAR AGORA</a>
+               <div className="flex items-center gap-4 py-4 px-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/30">
                   <div className="flex text-amber-500">
-                     {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
+                    {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
                   </div>
-                  <span className="text-xs font-bold text-clinic-text uppercase tracking-widest">Avaliação 4.9 no Google</span>
+                  <span className="text-[10px] uppercase font-bold text-clinic-text tracking-widest">4.9 no Google</span>
                </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Services - WITHOUT ICONS, BETTER DESIGN */}
-      <section id="serviços" className="py-32 px-6 md:px-12 lg:px-24 bg-white relative">
+      {/* Services Grid - REFINED & ALIGNED */}
+      <section id="serviços" className="section-padding bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row justify-between items-end gap-10 mb-24 border-b border-primary/10 pb-16">
-            <div className="max-w-2xl">
-              <span className="text-xs uppercase tracking-[0.6em] text-primary font-bold mb-6 block">Nossas Áreas</span>
-              <h2 className="text-5xl md:text-7xl font-serif font-bold text-clinic-text tracking-tight">Medicina de Alta <span className="text-primary italic font-medium">Performance.</span></h2>
-            </div>
-            <p className="text-lg text-clinic-text/60 font-bold max-w-sm mb-2 italic">Resultados clínicos de excelência por meio de tecnologia avançada e cuidado compassivo.</p>
+          <div className="mb-20">
+            <span className="section-subtitle">Nossos Atendimentos</span>
+            <h2 className="section-title">Medicina de Alta <span className="text-primary italic font-normal">Performance.</span></h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {SERVICES.map((s, i) => (
               <motion.div
                 key={s.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative flex flex-col h-[600px] overflow-hidden rounded-[2.5rem] bg-clinic-bg border border-primary/5 hover:shadow-[0_40px_80px_rgba(27,67,50,0.1)] transition-all duration-700"
+                className="group flex flex-col bg-clinic-bg rounded-[2rem] overflow-hidden border border-primary/5 hover:shadow-premium transition-all duration-500 h-[500px]"
               >
-                <div className="h-2/3 relative overflow-hidden">
+                <div className="h-2/5 relative overflow-hidden">
                   <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                  <div className="absolute bottom-10 left-10">
-                    <span className="text-8xl font-serif font-bold opacity-10 text-white tracking-widest transition-opacity group-hover:opacity-40">{s.id}</span>
-                  </div>
-                  <div className="absolute top-10 right-10">
-                    <div className="bg-white/80 backdrop-blur-sm px-5 py-2 rounded-full border border-white/30 text-[9px] font-black uppercase tracking-widest text-primary shadow-sm">
-                       {s.special}
-                    </div>
-                  </div>
+                  <div className="absolute top-6 right-6 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-[8px] font-bold uppercase tracking-widest text-primary">{s.special}</div>
                 </div>
-                <div className="p-10 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-3xl font-serif font-bold text-clinic-text mb-4 transition-colors group-hover:text-primary">{s.title}</h3>
-                    <p className="text-base text-clinic-text/70 leading-relaxed font-bold italic line-clamp-3">{s.description}</p>
-                  </div>
-                  <a href={whatsappUrl} className="text-[11px] font-bold uppercase tracking-widest text-primary flex items-center gap-3 group/btn">
-                     AGENDAR AGORA <div className="p-2 border border-primary/20 rounded-full group-hover/btn:bg-primary group-hover/btn:text-white transition-all"><ArrowRight size={14} /></div>
+                <div className="p-8 flex-1 flex flex-col">
+                  <div className="text-4xl font-serif font-black text-primary/10 mb-2 leading-none">{s.id}</div>
+                  <h3 className="text-2xl font-serif font-bold text-clinic-text mb-4 transition-colors group-hover:text-primary leading-tight">{s.title}</h3>
+                  <p className="text-sm text-clinic-text/60 leading-relaxed mb-6 flex-1 line-clamp-3 italic font-medium">{s.description}</p>
+                  <a href={whatsappUrl} className="mt-auto text-[10px] uppercase font-bold tracking-widest text-primary flex items-center gap-2 group/btn">
+                    Saiba Mais <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                   </a>
                 </div>
               </motion.div>
@@ -269,124 +233,137 @@ export default function App() {
         </div>
       </section>
 
-      {/* Differentiation & FAQ */}
-      <section className="py-32 px-6 md:px-12 lg:px-24 bg-clinic-bg overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-32 items-start">
-            <div id="diferenciais">
-              <span className="text-xs uppercase tracking-[0.6em] text-primary font-bold mb-8 block">Nossos Padrões</span>
-              <h2 className="text-5xl md:text-6xl font-serif font-bold text-clinic-text leading-[1.1] mb-12">Cuidados que <span className="text-primary italic font-medium">Transformam Vidas.</span></h2>
-              
-              <div className="space-y-12 mb-20">
+      {/* Cuidados Section - CLEANER */}
+      <section id="sobre" className="section-padding bg-clinic-bg overflow-hidden px-10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div className="relative">
+              <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-premium border-[15px] border-white">
+                <img src="/images/vet-clinic-interior.png" alt="Clinical" className="w-full aspect-square object-cover" />
+              </div>
+            </div>
+            <div>
+              <span className="section-subtitle">Diferenciais</span>
+              <h2 className="section-title mb-10 leading-tight">Cuidados que <span className="text-primary italic font-normal">Transformam Vidas.</span></h2>
+              <div className="space-y-10">
                 {[
                   { t: "Infraestrutura 24h", i: <Clock className="text-primary" /> },
                   { t: "Exames Laboratoriais Próprios", i: <Microscope className="text-primary" /> },
                   { t: "Equipe Especializada", i: <Award className="text-primary" /> }
                 ].map((item, idx) => (
-                   <div key={idx} className="flex gap-8 items-center group">
-                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-primary group-hover:text-white transition-all duration-500">{item.i}</div>
-                      <h4 className="text-2xl font-serif font-bold text-clinic-text uppercase tracking-tight">{item.t}</h4>
+                   <div key={idx} className="flex gap-6 items-center group">
+                      <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-md group-hover:bg-primary group-hover:text-white transition-all shrink-0">{item.i}</div>
+                      <h4 className="text-xl font-serif font-bold text-clinic-text tracking-tight uppercase">{item.t}</h4>
                    </div>
                 ))}
               </div>
-
-              {/* FAQ SECTION ADDED HERE */}
-              <div id="faq" className="mt-20 pt-20 border-t border-primary/10">
-                <span className="text-xs uppercase tracking-[0.4em] text-primary font-bold mb-10 block">Perguntas Frequentes</span>
-                <div className="space-y-4">
-                   {FAQS.map((faq, i) => (
-                     <FAQItem key={i} question={faq.question} answer={faq.answer} />
-                   ))}
-                </div>
-              </div>
             </div>
-
-            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} className="relative">
-              <div className="relative z-10 rounded-[4rem] overflow-hidden shadow-2xl border-[20px] border-white">
-                <img src="/images/vet-clinic-interior.png" alt="Clinical Environment" className="w-full aspect-square object-cover" />
-                <div className="absolute inset-0 bg-primary/5" />
-              </div>
-              <div className="absolute -bottom-16 -left-16 bg-white p-12 rounded-[3.5rem] shadow-2xl max-w-sm hidden xl:block border border-primary/5">
-                <div className="flex text-amber-500 mb-6"><Quote size={40} className="opacity-20 translate-x-[-10px]" /></div>
-                <p className="text-2xl font-serif font-bold text-clinic-text leading-relaxed italic">"Aqui, seu pet não é um paciente, é o amor da sua vida recebendo o melhor da medicina."</p>
-                <span className="block mt-8 text-xs font-bold text-primary uppercase tracking-[0.3em]">— Dra. Juliana Martins</span>
-              </div>
-            </motion.div>
-          </div>
         </div>
       </section>
 
-      {/* Map Section */}
-      <section id="localização" className="py-32 px-6 md:px-12 lg:px-24 bg-white">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-24 items-center">
+      {/* Localização Section */}
+      <section id="localização" className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-20">
           <div className="lg:col-span-1">
-             <span className="text-xs uppercase tracking-[0.6em] text-primary font-bold mb-8 block">Onde Estamos</span>
-             <h2 className="text-5xl font-serif font-bold text-clinic-text mb-12 uppercase tracking-tighter leading-none">{CLIENT_CONFIG.name} <br/> <span className="text-primary italic font-medium">Pinheiros</span></h2>
+             <span className="section-subtitle">Onde Estamos</span>
+             <h2 className="text-5xl font-serif font-bold text-clinic-text mb-12 leading-none">{CLIENT_CONFIG.name} <br/> <span className="text-primary italic font-normal text-3xl">Pinheiros</span></h2>
              <div className="space-y-10">
-                <div className="flex gap-6">
-                   <div className="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary shrink-0"><MapPin size={28} /></div>
+                <div className="flex gap-5">
+                   <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary shrink-0"><MapPin size={24} /></div>
                    <div>
-                      <h4 className="font-serif text-2xl font-bold text-clinic-text mb-2 tracking-tight uppercase">Endereço</h4>
-                      <p className="text-base text-clinic-text/60 font-bold">{CLIENT_CONFIG.address}</p>
+                      <h4 className="font-serif text-xl font-bold text-clinic-text mb-1 tracking-tight uppercase">Endereço</h4>
+                      <p className="text-sm text-clinic-text/60 font-bold">{CLIENT_CONFIG.address}</p>
                    </div>
                 </div>
-                <div className="flex gap-6">
-                   <div className="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary shrink-0"><Clock size={28} /></div>
+                <div className="flex gap-5">
+                   <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary shrink-0"><Clock size={24} /></div>
                    <div>
-                      <h4 className="font-serif text-2xl font-bold text-clinic-text mb-2 tracking-tight uppercase">Horários</h4>
-                      <p className="text-base text-clinic-text/60 font-bold">{CLIENT_CONFIG.openingHours}</p>
+                      <h4 className="font-serif text-xl font-bold text-clinic-text mb-1 tracking-tight uppercase">Plantão</h4>
+                      <p className="text-sm text-clinic-text/60 font-bold">{CLIENT_CONFIG.openingHours}</p>
                    </div>
                 </div>
              </div>
           </div>
-          <div className="lg:col-span-2 h-[600px] rounded-[3.5rem] overflow-hidden shadow-2xl border-[15px] border-clinic-bg relative">
-             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.3308828552393!2d-46.67498772412806!3d-23.592474962295692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce57530444379b%3A0x6b5e024220fa9449!2sRua%20Joaquim%20Floriano%2C%2072%20-%20Itaim%20Bibi%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004534-000!5e0!3m2!1spt-BR!2sbr!4v1711310000000!5m2!1spt-BR!2sbr" 
-                width="100%" height="100%" style={{ border: 0 }} loading="lazy" title="DUNO Map" className="grayscale-[0.1]"
-             ></iframe>
+          <div className="lg:col-span-2 h-[500px] rounded-[3rem] overflow-hidden shadow-premium border-8 border-clinic-bg">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.3308828552393!2d-46.67498772412806!3d-23.592474962295692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce57530444379b%3A0x6b5e024220fa9449!2sRua%20Joaquim%20Floriano%2C%2072%20-%20Itaim%20Bibi%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004534-000!5e0!3m2!1spt-BR!2sbr!4v1711310000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style={{ border: 0 }} loading="lazy" title="Map" className="grayscale-[0.2]"></iframe>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION - NOW AFTER MAP */}
+      <section className="section-padding bg-clinic-bg">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="section-subtitle">FAQ</span>
+            <h2 className="section-title text-4xl">Dúvidas Frequentes</h2>
+          </div>
+          <div className="space-y-4">
+            {FAQS.map((faq, i) => (
+              <FAQItem key={i} question={faq.question} answer={faq.answer} />
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-accent text-white pt-32 pb-16">
-        <div className="max-w-7xl mx-auto px-10">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-20 mb-32 items-start">
+      <footer className="bg-accent text-white py-16 px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-5 mb-12">
-                <span className="text-5xl">🐾</span>
-                <span className="font-serif text-6xl font-bold tracking-tighter uppercase leading-none">{CLIENT_CONFIG.name}</span>
+              <div className="flex items-center gap-4 mb-6">
+                 <span className="text-4xl">🐾</span>
+                 <span className="font-serif text-4xl font-bold uppercase tracking-tighter">{CLIENT_CONFIG.name}</span>
               </div>
-              <p className="text-white/40 text-2xl font-serif font-bold italic max-w-lg leading-relaxed">{CLIENT_CONFIG.emergency}</p>
-              <div className="flex gap-6 mt-12">
-                <a href="#" className="w-14 h-14 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-primary transition-all"><Instagram size={28} /></a>
-                <a href="#" className="w-14 h-14 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-primary transition-all"><Facebook size={28} /></a>
+              <p className="text-white/40 font-bold italic mb-10 text-xl">{CLIENT_CONFIG.emergency}</p>
+              <div className="flex gap-4">
+                <a href="#" className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center hover:bg-primary transition-all"><Instagram size={24} /></a>
+                <a href="#" className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center hover:bg-primary transition-all"><Facebook size={24} /></a>
               </div>
             </div>
             <div>
-              <h4 className="font-serif text-3xl font-bold mb-10 tracking-tight uppercase">Sitemap</h4>
-              <ul className="space-y-6 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
-                <li><a href="#sobre" className="hover:text-primary">A Clínica</a></li>
-                <li><a href="#serviços" className="hover:text-primary">Especialidades</a></li>
-                <li><a href="#diferenciais" className="hover:text-primary">Padrão Ouro</a></li>
-                <li><a href="#localização" className="hover:text-primary">Onde Estamos</a></li>
-              </ul>
+               <h4 className="font-serif text-2xl font-bold mb-8 uppercase tracking-tighter">Site</h4>
+               <ul className="space-y-4 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
+                  <li><a href="#início">Início</a></li>
+                  <li><a href="#serviços">Serviços</a></li>
+                  <li><a href="#sobre">Sobre</a></li>
+                  <li><a href="#localização">Local</a></li>
+               </ul>
             </div>
             <div>
-              <h4 className="font-serif text-3xl font-bold mb-10 tracking-tight uppercase">Contato</h4>
-              <ul className="space-y-8 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
-                <li className="flex gap-4"><MapPin className="text-primary" /> {CLIENT_CONFIG.address}</li>
-                <li className="flex gap-4"><Phone className="text-primary" /> (11) 99999-9999</li>
-                <li className="flex gap-4"><Clock className="text-primary" /> 24 Horas</li>
-              </ul>
+               <h4 className="font-serif text-2xl font-bold mb-8 uppercase tracking-tighter">Contatos</h4>
+               <ul className="space-y-6 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
+                  <li className="flex gap-4"><MapPin className="text-primary" /> {CLIENT_CONFIG.address}</li>
+                  <li className="flex gap-4"><Phone className="text-primary" /> (11) 99999-9999</li>
+                  <li className="flex gap-4"><Clock className="text-primary" /> 24 Horas</li>
+               </ul>
             </div>
           </div>
-          <div className="pt-20 border-t border-white/10 text-[11px] font-bold tracking-[0.4em] text-white/20 flex flex-col md:flex-row justify-between items-center gap-10">
-             <p>© 2026 {CLIENT_CONFIG.name}. TODOS OS DIREITOS RESERVADOS.</p>
-             <div className="flex gap-12"><a href="#">PRIVACIDADE</a> <a href="#">TERMOS</a></div>
+          <div className="pt-10 border-t border-white/5 text-[10px] uppercase tracking-[0.4em] text-white/20 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p>© 2026 {CLIENT_CONFIG.name} VETERINÁRIA.</p>
+            <div className="flex gap-10"><a href="#">PRIVACIDADE</a> <a href="#">TERMOS</a></div>
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="bg-white rounded-2xl border border-primary/5 overflow-hidden shadow-sm">
+      <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center p-8 text-left transition-colors">
+        <span className={`font-serif text-xl font-bold ${isOpen ? 'text-primary' : 'text-clinic-text'}`}>{question}</span>
+        <div className={`p-2 rounded-full transition-all ${isOpen ? 'bg-primary text-white rotate-180' : 'bg-primary/5 text-primary'}`}>
+          {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+        </div>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+            <p className="px-8 pb-8 text-base text-clinic-text/60 font-bold leading-relaxed">{answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
