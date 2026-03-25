@@ -23,7 +23,6 @@ import {
   Baby,
   Home,
   Coffee,
-  HeartPulse,
   Syringe,
   Scissors,
   PawPrint
@@ -36,86 +35,87 @@ const WhatsAppIcon = ({ size = 20, className = "" }) => (
 );
 
 const CLIENT_CONFIG = {
-  name: "VidaPet",
+  name: "DUNO",
+  brandSubtitle: "Clínica Veterinária de Elite",
   professional: "Dra. Juliana Martins",
   specialty: "Médica Veterinária | CRMV-SP 12345",
   whatsapp: "5511999999999",
-  address: "Av. Faria Lima, 2000 - Pinheiros, SP",
+  address: "Av. Brigadeiro Faria Lima, 2000 - Itaim Bibi, SP",
   openingHours: "Seg-Sex: 08:00 - 22:00 | Sáb: 08:00 - 18:00",
-  emergency: "Plantão 24h por Emergência",
+  emergency: "Plantão Emergencial 24h",
 };
 
 const SERVICES = [
   {
     id: 1,
     title: "Medicina Diagnóstica",
-    description: "Laboratório próprio e imagens de alta resolução para diagnósticos imediatos e precisos.",
-    badge: "Tecnologia",
+    description: "Laboratório próprio e imagens de alta resolução para diagnósticos imediatos e precisos com máxima segurança para o seu pet.",
+    badge: "Alta Tecnologia",
     image: "https://images.unsplash.com/photo-1579154238328-341ef9798583?q=80&w=800&auto=format&fit=crop",
-    icon: <Microscope size={28} />
+    icon: <Microscope size={32} />
   },
   {
     id: 2,
-    title: "Cirurgia Geral & Especializada",
-    description: "Bloco cirúrgico equipado com anestesia inalatória para máxima segurança operatória.",
+    title: "Bloco Cirúrgico 24h",
+    description: "Equipamentos de suporte à vida e anestesia inalatória monitorada para todos os tipos de procedimentos cirúrgicos complexos.",
     badge: "Centro Médico",
     image: "/images/vet-surgery.png",
-    icon: <Activity size={28} />
+    icon: <Activity size={32} />
   },
   {
     id: 3,
     title: "Internação Elite",
-    description: "Espaços climatizados com supervisão médica 24h e acompanhamento via WhatsApp.",
-    badge: "Acolhimento",
+    description: "Acomodações climatizadas e supervisão médica constante, garantindo que seu pet se sinta seguro e confortável durante a recuperação.",
+    badge: "Cuidado VIP",
     image: "/images/vet-clinic-interior.png",
-    icon: <Home size={28} />
+    icon: <Home size={32} />
   },
   {
     id: 4,
     title: "Pediatria Veterinária",
-    description: "Cuidado integral para filhotes, desde o protocolo vacinal até a nutrição adequada.",
+    description: "Acompanhamento integral do desenvolvimento, com calendários de vacinação personalizados e nutrição de ponta para filhotes.",
     badge: "Filhotes",
     image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop",
-    icon: <Baby size={28} />
+    icon: <Baby size={32} />
   },
   {
     id: 5,
-    title: "Odonto & Estética Sônica",
-    description: "Limpeza técnica e ultra-som para garantir a saúde bucal e bem-estar do seu pet.",
-    badge: "Higiene",
+    title: "Dental & Higiene Sônica",
+    description: "Tratamentos para cálculo dentário e profilaxia bucal avançada para garantir um sorriso saudável e hálito fresco em todas as idades.",
+    badge: "Saúde Oral",
     image: "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?q=80&w=800&auto=format&fit=crop",
-    icon: <Sparkles size={28} />
+    icon: <Sparkles size={32} />
   },
   {
     id: 6,
-    title: "Consultas Especializadas",
-    description: "Cardiologia, Dermatologia e Ortopedia com especialistas experientes e dedicados.",
+    title: "Consultas Expert",
+    description: "Cardiologia, Fisioterapia e Ortopedia com especialistas em constante atualização nas melhores universidades do mundo.",
     badge: "Especialidades",
     image: "https://images.unsplash.com/photo-1576201836106-cf1758af1c82?q=80&w=800&auto=format&fit=crop",
-    icon: <Stethoscope size={28} />
+    icon: <Stethoscope size={32} />
   }
 ];
 
 const TESTIMONIALS = [
   {
     id: 1,
-    name: "Carolina Meirelles",
-    text: "O atendimento da VidaPet é diferenciado. A paz que a clínica transmite ajuda muito na recuperação dos pets.",
-    role: "Tutora da Nina (Shihtzu)",
+    name: "Carolina Ribeiro",
+    text: "A precisão diagnóstica da DUNO salvou meu gato Oliver. O atendimento é empático e as instalações são impecáveis.",
+    role: "Tutora do Oliver (Gato SRD)",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 2,
     name: "Marcos Paulo",
-    text: "Tecnologia de ponta. Fizemos a cirurgia do Thor e o pós-operatório foi perfeito. Gratidão à equipe!",
+    text: "O melhor pós-operatório que já vi. A equipe enviou notícias constantes via WhatsApp, me deixando 100% tranquilo.",
     role: "Tutor do Thor (Buldog)",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 3,
-    name: "Renata Oliveira",
-    text: "A melhor clínica de Pinheiros. Transparência total e muito carinho com os animais. Recomendo 100%.",
-    role: "Tutora da Luna (Persa)",
+    name: "Patrícia Lima",
+    text: "A infraestrutura em Pinheiros é inigualável. Não troco a DUNO por nada!",
+    role: "Tutora da Mel (Shitzu)",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
   }
 ];
@@ -138,60 +138,63 @@ export default function App() {
     };
   }, []);
 
-  const whatsappUrl = `https://wa.me/${CLIENT_CONFIG.whatsapp}?text=${encodeURIComponent("Olá! Gostaria de agendar uma consulta para meu pet na VidaPet.")}`;
+  const whatsappUrl = `https://wa.me/${CLIENT_CONFIG.whatsapp}?text=${encodeURIComponent("Olá! Gostaria de agendar uma consulta na DUNO Veterinária.")}`;
 
   return (
-    <div className="min-h-screen selection:bg-primary selection:text-white bg-clinic-bg font-sans">
+    <div className="min-h-screen bg-clinic-bg font-sans selection:bg-primary selection:text-white">
       {/* Loading Screen */}
       <AnimatePresence>
         {isLoading && (
           <motion.div
+            key="preloader"
             exit={{ y: '-100%', transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }}
-            className="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center p-10"
           >
-            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }} className="text-7xl mb-6">🐾</motion.div>
-            <h2 className="font-serif text-3xl tracking-[0.5em] text-clinic-text uppercase font-bold">{CLIENT_CONFIG.name}</h2>
+            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }} className="text-8xl mb-6">🐾</motion.div>
+            <h2 className="font-serif text-5xl md:text-7xl font-black text-clinic-text tracking-tighter uppercase">{CLIENT_CONFIG.name}</h2>
+            <p className="text-primary font-black uppercase tracking-[0.4em] text-xs mt-4">Medicina de Elite</p>
           </motion.div>
         )}
       </AnimatePresence>
 
       <motion.div className="fixed top-0 left-0 right-0 h-1.5 bg-primary z-[100] origin-left" style={{ scaleX }} />
 
-      {/* Floating Call to Action (Fixed Mobile) */}
+      {/* Mobile CTA (Fixed) */}
       <div className="md:hidden fixed bottom-6 left-6 right-6 z-[95]">
-        <a href={whatsappUrl} className="flex items-center justify-center gap-4 bg-primary text-white py-5 px-8 rounded-2xl shadow-2xl font-bold tracking-widest text-xs uppercase animate-pulse-whatsapp">
-          <WhatsAppIcon size={20} /> Agendar Consulta Agora
+        <a href={whatsappUrl} className="flex items-center justify-center gap-4 bg-primary text-white py-6 px-10 rounded-[2rem] shadow-3xl font-black tracking-widest text-xs uppercase animate-pulse-whatsapp border-2 border-white/20">
+          <WhatsAppIcon size={24} /> AGENDAR AGORA
         </a>
       </div>
 
-      {/* WhatsApp Fixed Desktop */}
-      <div className="hidden md:block">
-        <a href={whatsappUrl} target="_blank" rel="noreferrer" className="fixed bottom-10 right-10 z-[90] bg-[#25D366] text-white p-5 rounded-full shadow-[0_20px_50px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform group">
-          <WhatsAppIcon size={36} className="group-hover:rotate-12 transition-transform" />
-        </a>
-      </div>
+      {/* Floating WhatsApp Desktop */}
+      <a href={whatsappUrl} target="_blank" rel="noreferrer" className="hidden md:flex fixed bottom-10 right-10 z-[90] bg-[#25D366] text-white p-6 rounded-full shadow-3xl hover:scale-110 transition-transform group items-center justify-center">
+        <WhatsAppIcon size={40} className="group-hover:rotate-12 transition-transform" />
+      </a>
 
       {/* Navigation */}
-      <nav className={`fixed w-full z-[80] transition-all duration-500 ${isScrolled ? 'bg-white/98 backdrop-blur-xl py-4 shadow-[0_10px_40px_rgba(0,0,0,0.08)] border-b border-primary/10' : 'bg-transparent py-10'}`}>
-        <div className="max-w-7xl mx-auto px-10 md:px-14 flex justify-between items-center h-full">
-          <a href="#início" className="flex items-center gap-4">
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${isScrolled ? 'bg-primary text-white' : 'bg-white/20 text-clinic-text backdrop-blur-sm shadow-xl'}`}>
-               <PawPrint size={28} />
+      <nav className={`fixed w-full z-[80] transition-all duration-700 ${isScrolled ? 'bg-white/98 backdrop-blur-xl py-4 shadow-2xl border-b-2 border-primary/10' : 'bg-transparent py-10'}`}>
+        <div className="max-w-7xl mx-auto px-10 md:px-14 flex justify-between items-center">
+          <a href="#início" className="flex items-center gap-5">
+            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all shadow-xl ${isScrolled ? 'bg-primary text-white' : 'bg-white text-primary'}`}>
+               <PawPrint size={32} />
             </div>
-            <span className="font-serif text-3xl md:text-4xl font-bold tracking-tighter text-clinic-text uppercase">{CLIENT_CONFIG.name}</span>
+            <div className="flex flex-col">
+              <span className="font-serif text-4xl font-black tracking-tighter text-clinic-text leading-none uppercase">{CLIENT_CONFIG.name}</span>
+              <span className="text-[7px] uppercase tracking-[0.4em] font-black text-primary mt-1.5 opacity-80">Veterinária de Elite</span>
+            </div>
           </a>
 
           <div className="hidden lg:flex items-center gap-10">
-            {['Início', 'Sobre', 'Serviços', 'Depoimentos', 'Localização'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-[12px] uppercase tracking-[0.3em] font-extrabold text-clinic-text hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary pb-1">{item}</a>
+            {['Início', 'Sobre', 'Serviços', 'Resultados', 'Localização'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-[12px] uppercase tracking-[0.3em] font-black text-clinic-text hover:text-primary transition-colors border-b-4 border-transparent hover:border-primary pb-1">{item}</a>
             ))}
-            <a href={whatsappUrl} className="bg-primary text-white h-14 px-10 text-[11px] font-bold rounded-2xl flex items-center gap-3 shadow-[0_15px_30px_rgba(45,106,79,0.2)] hover:shadow-primary/30 transition-all hover:-translate-y-1 tracking-widest uppercase">
-              <WhatsAppIcon size={18} /> Agendar Agora
+            <a href={whatsappUrl} className="bg-primary text-white h-16 px-12 text-[11px] font-black rounded-2xl flex items-center gap-3 shadow-2xl hover:bg-black transition-all hover:-translate-y-1">
+              <WhatsAppIcon size={18} /> AGENDAR CONSULTA
             </a>
           </div>
 
-          <button className="lg:hidden text-clinic-text p-2 hover:bg-primary/10 rounded-xl transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X size={36} /> : <Menu size={36} />}
+          <button className="lg:hidden text-clinic-text bg-white/50 p-3 rounded-2xl backdrop-blur-md" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            {isMobileMenuOpen ? <X size={40} /> : <Menu size={40} />}
           </button>
         </div>
       </nav>
@@ -199,99 +202,94 @@ export default function App() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="fixed inset-0 z-[75] bg-white flex flex-col items-center justify-center gap-12 p-10 lg:hidden">
-            {['Início', 'Sobre', 'Serviços', 'Depoimentos', 'Localização'].map((item, i) => (
-              <motion.a key={item} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} href={`#${item.toLowerCase()}`} onClick={() => setIsMobileMenuOpen(false)} className="text-4xl font-serif text-clinic-text uppercase font-bold hover:text-primary transition-all tracking-widest">{item}</motion.a>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[75] bg-white flex flex-col items-center justify-center gap-14 p-12 lg:hidden">
+            {['Início', 'Sobre', 'Serviços', 'Resultados', 'Localização'].map((item, i) => (
+              <motion.a key={item} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} href={`#${item.toLowerCase()}`} onClick={() => setIsMobileMenuOpen(false)} className="text-5xl font-serif text-clinic-text uppercase font-black tracking-tighter hover:text-primary">{item}</motion.a>
             ))}
-            <a href={whatsappUrl} className="w-full bg-primary text-white py-6 rounded-3xl text-center font-bold tracking-[0.2em] text-sm shadow-2xl">SOLICITAR CONSULTA</a>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section id="início" className="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
+      <section id="início" className="relative h-screen flex items-center justify-center pt-24 overflow-hidden px-10">
         <div className="absolute inset-0 z-0">
-          <img src="/images/vet-hero.png" alt="Hero" className="w-full h-full object-cover brightness-[0.6] scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
+          <img src="/images/vet-hero.png" alt="DUNO" className="w-full h-full object-cover brightness-[0.55] scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/45 to-transparent" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-10 w-full mt-10">
-          <motion.div initial={{ opacity: 0, x: -60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="max-w-3xl">
-            <div className="inline-block px-6 py-2 bg-primary/10 border border-primary/30 text-primary font-bold text-xs tracking-[0.4em] uppercase rounded-full mb-8">Especialistas em quem você ama</div>
-            <h1 className="text-6xl md:text-9xl font-serif mb-10 text-clinic-text leading-[1.0] font-black tracking-tighter">
-              Saúde de Elite <br /> <span className="text-primary italic">para seu Pet.</span>
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
+          <motion.div initial={{ opacity: 0, x: -80 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.2 }}>
+            <div className="inline-block px-8 py-3 bg-primary/10 border-2 border-primary/40 text-primary font-black text-xs tracking-[0.5em] uppercase rounded-full mb-10">Excelência Hospitalar Itaim Bibi</div>
+            <h1 className="text-7xl md:text-[10rem] font-serif mb-12 text-clinic-text leading-[0.9] font-black tracking-tighter">
+              A Saúde do <br /> <span className="text-primary italic">Seu Pet é Arte.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-clinic-text font-bold mb-12 max-w-lg leading-relaxed shadow-sm">
-               Referência em medicina veterinária de alta performance e infraestrutura hospitalar completa 24h.
+            <p className="text-2xl md:text-3xl text-clinic-text font-black mb-16 max-w-2xl leading-tight">
+               Referência em medicina avançada e atendimento humanizado na {CLIENT_CONFIG.name}.
             </p>
-            <div className="flex flex-col sm:flex-row gap-8">
-              <a href={whatsappUrl} className="bg-primary text-white rounded-[2rem] gap-4 shadow-[0_25px_60px_rgba(45,106,79,0.3)] h-20 px-12 text-sm font-black tracking-[0.3em] uppercase flex items-center justify-center hover:-translate-y-2 lg:hover:w-[450px] transition-all">
-                <WhatsAppIcon size={24} /> Agendar Avaliação <ArrowRight size={20} />
-              </a>
-            </div>
+            <a href={whatsappUrl} className="bg-primary text-white rounded-[2rem] gap-5 shadow-3xl h-24 px-14 text-sm font-black tracking-[0.4em] uppercase flex items-center justify-center hover:bg-black hover:w-[480px] lg:w-[450px] transition-all">
+              <WhatsAppIcon size={28} /> AGENDAR CONSULTA <ArrowRight size={24} />
+            </a>
           </motion.div>
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="py-24 max-w-7xl mx-auto px-6 -mt-24 relative z-20">
-        <div className="bg-white rounded-[3.5rem] shadow-[0_50px_100px_rgba(0,0,0,0.1)] p-12 md:p-20 grid grid-cols-2 lg:grid-cols-4 gap-12 border border-primary/5">
+      {/* Statistics Bar */}
+      <section className="py-24 max-w-7xl mx-auto px-10 -mt-24 relative z-20">
+        <div className="bg-white rounded-[4rem] shadow-3xl p-16 md:p-24 grid grid-cols-2 lg:grid-cols-4 gap-16 border-2 border-primary/5">
           {[
-            { l: 'Vidas Salvas', v: '22k+', i: <Heart size={32} className="text-primary" /> },
-            { l: 'Equipe Médica', v: '12+', i: <Activity size={32} className="text-primary" /> },
-            { l: 'Atendimento', v: '24h', i: <Clock size={32} className="text-primary" /> },
-            { l: 'Satisfação', v: '100%', i: <ShieldCheck size={32} className="text-primary" /> }
+            { l: 'Vidas Salvas na DUNO', v: '22k+', i: <Heart size={40} className="text-primary" /> },
+            { l: 'Membros da Equipe', v: '15+', i: <Activity size={40} className="text-primary" /> },
+            { l: 'Operação Médica', v: '24h', i: <Clock size={40} className="text-primary" /> },
+            { l: 'Protocolos Elite', v: '100%', i: <ShieldCheck size={40} className="text-primary" /> }
           ].map((s, idx) => (
-            <div key={idx} className="flex gap-6 items-center group">
-              <div className="w-16 h-16 rounded-[1.5rem] bg-clinic-bg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shadow-inner">{s.i}</div>
+            <div key={idx} className="flex gap-8 items-center group">
+              <div className="w-20 h-20 rounded-[2rem] bg-clinic-bg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shadow-xl">{s.i}</div>
               <div className="flex flex-col">
-                <span className="text-4xl md:text-5xl font-black text-clinic-text leading-none">{s.v}</span>
-                <span className="text-[10px] uppercase tracking-[0.3em] font-black text-clinic-text mt-3 opacity-60 group-hover:opacity-100 transition-opacity">{s.l}</span>
+                <span className="text-5xl md:text-6xl font-black text-clinic-text leading-none">{s.v}</span>
+                <span className="text-[10px] uppercase font-black text-clinic-text mt-4 opacity-70 tracking-widest">{s.l}</span>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Services Grid Section - RE-ALIGNED & FIXED */}
+      {/* Services Grid (Fixed & Perfectly Aligned) */}
       <section id="serviços" className="section-padding bg-white relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-24 flex flex-col items-center">
-            <span className="text-xs uppercase tracking-[0.5em] font-black text-primary mb-6">Expertise Reconhecida</span>
-            <h2 className="text-5xl md:text-7xl font-serif text-clinic-text font-black leading-tight max-w-4xl">Nossas <span className="text-primary italic">Soluções Médicas</span></h2>
-            <div className="w-24 h-[6px] bg-primary/20 mt-10 rounded-full" />
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-28 flex flex-col items-center">
+            <span className="text-xs uppercase tracking-[0.6em] font-black text-primary mb-8 border-b-2 border-primary/20 pb-2">Nossas Áreas de Atuação</span>
+            <h2 className="text-6xl md:text-[7rem] font-serif text-clinic-text font-black leading-tight max-w-5xl uppercase tracking-tighter">
+               Medicina de <span className="text-primary italic">Alta Performance.</span>
+            </h2>
+            <div className="w-32 h-2 bg-primary/20 mt-12 rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-20">
             {SERVICES.map((s, i) => (
               <motion.div
                 key={s.id}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1, duration: 0.8 }}
-                className="group relative rounded-[3rem] overflow-hidden bg-clinic-bg border-4 border-transparent hover:border-primary/10 min-h-[550px] flex flex-col shadow-2xl hover:shadow-[0_60px_100px_rgba(45,106,79,0.15)] transition-all duration-700"
+                className="group relative rounded-[4rem] overflow-hidden bg-white border-2 border-primary/5 min-h-[600px] flex flex-col shadow-2xl hover:shadow-3xl transition-all duration-700"
               >
-                {/* Fixed Height Image Container */}
-                <div className="h-[280px] w-full relative overflow-hidden shrink-0">
+                <div className="h-[300px] w-full relative overflow-hidden shrink-0">
                   <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                  <div className="absolute top-8 left-8 bg-white/60 backdrop-blur-md px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest text-clinic-text border border-white/50">{s.badge}</div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-clinic-bg via-transparent to-transparent opacity-60" />
+                  <div className="absolute top-10 left-10 bg-white/75 backdrop-blur-xl px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-[0.2em] text-clinic-text border-2 border-primary/20">{s.badge}</div>
                 </div>
 
-                {/* Content Area with Auto Alignment */}
-                <div className="p-10 flex-1 flex flex-col relative justify-between">
-                  {/* Floating Icon Overlapping Image/Text Junction */}
-                  <div className="absolute -top-12 right-12 w-24 h-24 bg-primary text-white rounded-[2rem] shadow-2xl flex items-center justify-center group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 border-4 border-white">
+                <div className="p-12 flex-1 flex flex-col relative justify-between bg-white">
+                  <div className="absolute -top-14 right-14 w-28 h-28 bg-primary text-white rounded-[2.5rem] shadow-3xl flex items-center justify-center group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 border-8 border-white">
                     {s.icon}
                   </div>
 
-                  <div className="pt-6">
-                    <h3 className="text-3xl font-black text-clinic-text mb-6 group-hover:text-primary transition-colors leading-tight font-serif uppercase tracking-tighter">{s.title}</h3>
-                    <p className="text-lg text-clinic-text font-bold leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity flex-1">{s.description}</p>
+                  <div className="pt-8">
+                    <h3 className="text-4xl font-black text-clinic-text mb-8 group-hover:text-primary transition-colors leading-none font-serif uppercase tracking-tighter">{s.title}</h3>
+                    <p className="text-xl text-clinic-text font-bold leading-relaxed opacity-90">{s.description}</p>
                   </div>
 
-                  <div className="mt-10 pt-10 border-t border-primary/10">
-                    <a href={whatsappUrl} className="inline-flex items-center gap-4 text-xs font-black text-primary uppercase tracking-[0.3em] group-hover:gap-6 transition-all">
-                      Consultar Especialista <ArrowRight size={20} />
+                  <div className="mt-12 pt-12 border-t-2 border-primary/5">
+                    <a href={whatsappUrl} className="inline-flex items-center gap-5 text-sm font-black text-primary uppercase tracking-[0.4em] group-hover:gap-8 transition-all">
+                      Saber Mais <ArrowRight size={24} />
                     </a>
                   </div>
                 </div>
@@ -301,36 +299,36 @@ export default function App() {
         </div>
       </section>
 
-      {/* Experience / Differentiation Section */}
-      <section className="section-padding bg-clinic-bg overflow-hidden">
-        <div className="max-w-7xl mx-auto px-10">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1 }} className="relative order-2 lg:order-1">
-              <div className="relative z-10 rounded-[5rem] overflow-hidden shadow-[0_100px_150px_rgba(45,106,79,0.2)] border-[20px] border-white">
-                <img src="/images/vet-clinic-interior.png" alt="Interior Clínica" className="w-full aspect-square object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent" />
+      {/* Experience Section */}
+      <section className="section-padding bg-clinic-bg">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-32 items-center">
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} className="relative">
+              <div className="relative z-10 rounded-[6rem] overflow-hidden shadow-3xl border-[20px] border-white ring-2 ring-primary/10">
+                <img src="/images/vet-clinic-interior.png" alt="DUNO" className="w-full aspect-square object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/40 via-transparent to-transparent" />
               </div>
-              <div className="absolute -top-10 -right-10 bg-white p-12 rounded-[4rem] shadow-3xl hidden xl:flex flex-col gap-6 max-w-[320px] border border-primary/5">
-                 <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary"><Coffee size={40} /></div>
-                 <h4 className="font-serif text-3xl font-black text-clinic-text">Cuidado Sem Stress</h4>
-                 <p className="text-lg text-clinic-text font-bold opacity-60 leading-relaxed">Infraestrutura planejada para que seu pet sinta-se em casa.</p>
+              <div className="absolute -bottom-16 -right-16 bg-white p-14 rounded-[4rem] shadow-3xl hidden xl:flex flex-col gap-8 max-w-[360px] border-4 border-primary/5">
+                 <div className="w-24 h-24 bg-primary/10 rounded-[2rem] flex items-center justify-center text-primary"><Coffee size={48} /></div>
+                 <h4 className="font-serif text-4xl font-black text-clinic-text leading-none uppercase tracking-tighter">Oásis de <br/> Tranquilidade</h4>
+                 <p className="text-xl text-clinic-text font-bold opacity-75">Infraestrutura planejada para que o estresse do seu pet seja zero.</p>
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 80 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="order-1 lg:order-2">
-              <span className="text-xs uppercase tracking-[0.5em] font-black text-primary mb-8 block">Diferenciais que encantam</span>
-              <h2 className="text-5xl md:text-7xl font-serif text-clinic-text font-black leading-[1.05] mb-12">Protocolos de <br /> <span className="text-primary italic">Alta Performance.</span></h2>
-              <div className="space-y-12">
+            <motion.div initial={{ opacity: 0, x: 80 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
+              <span className="text-xs uppercase tracking-[0.6em] font-black text-primary mb-10 block">Por que escolher a DUNO?</span>
+              <h2 className="text-7xl md:text-9xl font-serif text-clinic-text font-black leading-[0.9] mb-16 uppercase tracking-tighter">Nossos <br /> <span className="text-primary italic">Padrões de Ouro.</span></h2>
+              <div className="space-y-16">
                 {[
-                  { t: "Plantão Emergencial 24h", d: "Equipe médica experiente pronta para agir em qualquer segundo.", i: <HeartPulse className="text-primary" size={36} /> },
-                  { t: "Internação Humanizada", d: "Acompanhamento VIP com boletins em tempo real para os tutores.", i: <Home className="text-primary" size={36} /> },
-                  { t: "Equipe Multidisciplinar", d: "Especialistas em Cardiologia, Ortopedia e Dermatologia no mesmo local.", i: <Award className="text-primary" size={36} /> }
+                  { t: "Plantão Emergencial 24h", d: "Time médico de alta prontidão e centro cirúrgico ativo 24/7.", i: <Activity size={48} className="text-primary" /> },
+                  { t: "Internação Humanizada", d: "Monitoramento intensivo com relatórios em vídeo no seu WhatsApp.", i: <Home size={48} className="text-primary" /> },
+                  { t: "Excelência Diagnóstica", d: "Equipamentos de imagem e laboratoriais de padrão internacional.", i: <Microscope size={48} className="text-primary" /> }
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-10 group hover:translate-x-4 transition-transform duration-500">
-                    <div className="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center shadow-2xl shrink-0 group-hover:bg-primary group-hover:text-white transition-all">{item.i}</div>
+                  <div key={i} className="flex gap-12 group">
+                    <div className="w-24 h-24 bg-white rounded-[2.5rem] flex items-center justify-center shadow-2xl shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-500">{item.i}</div>
                     <div>
-                      <h4 className="font-serif text-3xl font-black text-clinic-text mb-3 uppercase tracking-tighter">{item.t}</h4>
-                      <p className="text-xl text-clinic-text font-bold leading-relaxed opacity-70">{item.d}</p>
+                      <h4 className="font-serif text-4xl font-black text-clinic-text mb-4 uppercase tracking-tighter">{item.t}</h4>
+                      <p className="text-2xl text-clinic-text font-bold opacity-80 leading-relaxed">{item.d}</p>
                     </div>
                   </div>
                 ))}
@@ -340,99 +338,95 @@ export default function App() {
         </div>
       </section>
 
-      {/* Location Section with Map (RESTORED & IMPROVED) */}
+      {/* Map Section */}
       <section id="localização" className="section-padding bg-white relative">
-        <div className="max-w-7xl mx-auto px-10">
-          <div className="grid lg:grid-cols-3 gap-16 md:gap-24 items-stretch">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-24 items-stretch">
             <div className="lg:col-span-1 flex flex-col justify-center">
-              <span className="text-xs uppercase tracking-[0.5em] font-black text-primary mb-8">Nossa Localização</span>
-              <h2 className="text-5xl md:text-7xl font-serif text-clinic-text font-black mb-12">VidaPet <br /> <span className="text-primary italic">Pinheiros</span></h2>
+              <span className="text-xs uppercase tracking-[0.6em] font-black text-primary mb-10">Onde Estamos</span>
+              <h2 className="text-7xl md:text-8xl font-serif text-clinic-text font-black mb-16 uppercase tracking-tighter">DUNO <br /> <span className="text-primary italic">Itaim Bibi</span></h2>
               
-              <div className="space-y-10">
-                <div className="flex gap-8 group">
-                  <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><MapPin size={28} /></div>
+              <div className="space-y-12">
+                <div className="flex gap-10 group">
+                  <div className="w-20 h-20 bg-primary text-white rounded-3xl flex items-center justify-center shadow-2xl shrink-0 transition-transform group-hover:scale-110"><MapPin size={36} /></div>
                   <div>
-                    <h4 className="font-serif text-2xl font-black uppercase mb-2">Endereço</h4>
-                    <p className="text-xl font-bold text-clinic-text opacity-70 leading-relaxed">{CLIENT_CONFIG.address}</p>
-                    <a href="https://maps.app.goo.gl/YourActualLink" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-primary font-black uppercase tracking-widest text-[11px] mt-3 hover:gap-4 transition-all">Abrir no GPS <ArrowRight size={14} /></a>
+                    <h4 className="font-serif text-3xl font-black uppercase mb-3 tracking-tighter text-clinic-text">Endereço</h4>
+                    <p className="text-2xl font-black text-clinic-text opacity-70 leading-relaxed">{CLIENT_CONFIG.address}</p>
                   </div>
                 </div>
-                <div className="flex gap-8 group">
-                  <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><Clock size={28} /></div>
+                <div className="flex gap-10 group">
+                  <div className="w-20 h-20 bg-primary text-white rounded-3xl flex items-center justify-center shadow-2xl shrink-0 transition-transform group-hover:scale-110"><Clock size={36} /></div>
                   <div>
-                    <h4 className="font-serif text-2xl font-black uppercase mb-2">Horários</h4>
-                    <p className="text-xl font-bold text-clinic-text opacity-70 leading-relaxed">{CLIENT_CONFIG.openingHours}</p>
-                    <div className="flex items-center gap-3 mt-4 px-4 py-2 bg-primary/10 text-primary font-black text-[10px] uppercase tracking-widest rounded-full w-fit max-w-full">
-                       <span className="w-2 h-2 bg-primary rounded-full animate-ping" /> {CLIENT_CONFIG.emergency}
+                    <h4 className="font-serif text-3xl font-black uppercase mb-3 tracking-tighter text-clinic-text">Horários</h4>
+                    <p className="text-2xl font-black text-clinic-text opacity-70 leading-relaxed">{CLIENT_CONFIG.openingHours}</p>
+                    <div className="inline-flex items-center gap-4 mt-6 bg-primary/15 text-primary px-6 py-3 rounded-full font-black text-xs uppercase tracking-[0.3em] shadow-sm">
+                       <span className="w-3 h-3 bg-primary rounded-full animate-ping" /> {CLIENT_CONFIG.emergency}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* RESTORED FULL WIDTH MAP */}
-            <div className="lg:col-span-2 rounded-[4rem] overflow-hidden shadow-[0_60px_100px_rgba(0,0,0,0.15)] border-[15px] border-clinic-bg min-h-[600px] relative">
+            <div className="lg:col-span-2 rounded-[5rem] overflow-hidden shadow-3xl border-[20px] border-clinic-bg min-h-[600px] relative ring-2 ring-primary/10">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.06583023063!2d-46.69083282412918!3d-23.566060161476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce579f90be6133%3A0xc682914f6b28bd84!2sAv.%20Brig.%20Faria%20Lima%2C%202000%20-%20Jardim%20Paulistano%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001451-000!5e0!3m2!1spt-BR!2sbr!4v1711310000000!5m2!1spt-BR!2sbr" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.3308828552393!2d-46.67498772412806!3d-23.592474962295692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce57530444379b%3A0x6b5e024220fa9449!2sRua%20Joaquim%20Floriano%2C%2072%20-%20Itaim%20Bibi%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004534-000!5e0!3m2!1spt-BR!2sbr!4v1711310000000!5m2!1spt-BR!2sbr" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
                 loading="lazy" 
-                title="Mapa VidaPet"
-                className="grayscale-[0.2] contrast-[1.1]"
+                title="DUNO Mapa"
+                className="grayscale-[0.2]"
               ></iframe>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer (10/10 Visibility) */}
-      <footer className="bg-accent text-white pt-32 pb-16">
+      {/* Footer (10/10 Contrast) */}
+      <footer className="bg-accent text-white pt-40 pb-20">
         <div className="max-w-7xl mx-auto px-10">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-20 mb-32">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-24 mb-40">
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-6 mb-12">
-                <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center text-white border border-white/20 text-5xl">🐾</div>
-                <span className="font-serif text-5xl md:text-6xl font-black tracking-tighter uppercase">{CLIENT_CONFIG.name}</span>
+              <div className="flex items-center gap-8 mb-16">
+                <div className="w-24 h-24 bg-white/10 rounded-[2rem] flex items-center justify-center text-white border-2 border-white/20 text-6xl shadow-inner">🐾</div>
+                <span className="font-serif text-7xl md:text-9xl font-black tracking-tighter uppercase leading-none">{CLIENT_CONFIG.name}</span>
               </div>
-              <p className="text-white text-2xl font-bold opacity-60 max-w-lg mb-12 leading-relaxed">Onde a medicina de elite e o amor incondicional pelos animais se encontram. Referência absoluta em São Paulo.</p>
+              <p className="text-white text-3xl font-black opacity-70 max-w-xl mb-16 leading-tight uppercase tracking-tighter">Onde a medicina de elite e o amor incondicional transformam vidas em Pinheiros.</p>
               <div className="flex gap-10">
-                <a href="#" className="w-16 h-16 rounded-[1.5rem] border-2 border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:-translate-y-2 transition-all duration-500 shadow-2xl"><Instagram size={32} /></a>
-                <a href="#" className="w-16 h-16 rounded-[1.5rem] border-2 border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:-translate-y-2 transition-all duration-500 shadow-2xl"><Facebook size={32} /></a>
+                <a href="#" className="w-20 h-20 rounded-[2rem] border-4 border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:-translate-y-4 transition-all duration-700 shadow-3xl"><Instagram size={40} /></a>
+                <a href="#" className="w-20 h-20 rounded-[2rem] border-4 border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:-translate-y-4 transition-all duration-700 shadow-3xl"><Facebook size={40} /></a>
               </div>
             </div>
 
-            <div className="flex flex-col gap-10">
-              <h4 className="font-serif text-3xl font-black uppercase tracking-tighter">Áreas de Atuação</h4>
-              <ul className="space-y-6 text-xl font-bold text-white/50">
-                <li><a href="#serviços" className="hover:text-primary transition-colors">Bloco Cirúrgico 24h</a></li>
+            <div className="flex flex-col gap-12">
+              <h4 className="font-serif text-4xl font-black uppercase tracking-tighter border-b-2 border-white/10 pb-6">Especialidades</h4>
+              <ul className="space-y-8 text-2xl font-black text-white/40 uppercase tracking-tighter">
+                <li><a href="#serviços" className="hover:text-primary transition-colors">Cirurgia 24h</a></li>
                 <li><a href="#serviços" className="hover:text-primary transition-colors">Exames Diagnósticos</a></li>
                 <li><a href="#serviços" className="hover:text-primary transition-colors">Internação VIP</a></li>
-                <li><a href="#serviços" className="hover:text-primary transition-colors">Vacinação & Kids</a></li>
+                <li><a href="#serviços" className="hover:text-primary transition-colors">Consultas Expert</a></li>
               </ul>
             </div>
 
-            <div className="flex flex-col gap-10">
-              <h4 className="font-serif text-3xl font-black uppercase tracking-tighter">Fale Conosco</h4>
-              <ul className="space-y-8 text-xl font-bold text-white/50">
-                <li className="flex gap-6"><MapPin className="text-primary" size={24} /> <span>{CLIENT_CONFIG.address}</span></li>
-                <li className="flex gap-6"><Phone className="text-primary" size={24} /> <span>(11) 99999-9999</span></li>
-                <li className="flex gap-6"><Clock className="text-primary" size={24} /> <span>{CLIENT_CONFIG.emergency}</span></li>
+            <div className="flex flex-col gap-12">
+              <h4 className="font-serif text-4xl font-black uppercase tracking-tighter border-b-2 border-white/10 pb-6">Contato</h4>
+              <ul className="space-y-10 text-2xl font-black text-white/40 uppercase tracking-tighter">
+                <li className="flex gap-8"><MapPin className="text-primary" size={36} /> <span>{CLIENT_CONFIG.address}</span></li>
+                <li className="flex gap-8"><Phone className="text-primary" size={36} /> <span>(11) 99999-9999</span></li>
+                <li className="flex gap-8"><Clock className="text-primary" size={36} /> <span>Plantão 24h Ativo</span></li>
               </ul>
             </div>
           </div>
 
-          <div className="pt-20 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-12 text-[12px] uppercase tracking-[0.4em] font-black text-white/20">
-            <p>© 2026 {CLIENT_CONFIG.name.toUpperCase()} MÉDICA VETERINÁRIA. TODOS OS DIREITOS RESERVADOS.</p>
-            <div className="flex gap-14">
-              <a href="#" className="hover:text-white transition-colors">PRIVACIDADE</a>
-              <a href="#" className="hover:text-white transition-colors">CONVÊNIOS</a>
+          <div className="pt-24 border-t-4 border-white/10 flex flex-col md:flex-row justify-between items-center gap-16 text-sm uppercase tracking-[0.5em] font-black text-white/20">
+            <p>© 2026 {CLIENT_CONFIG.name}. Todos os direitos reservados.</p>
+            <div className="flex gap-20">
+              <a href="#" className="hover:text-white transition-colors">Privacidade</a>
+              <a href="#" className="hover:text-white transition-colors">Termos</a>
             </div>
           </div>
         </div>
       </footer>
-
-      <CookieBanner />
     </div>
   );
 }
