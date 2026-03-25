@@ -1,30 +1,26 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", serif;
   
-  /* High-Contrast Colors for Veterinary Clinic */
-  --color-primary: var(--primary-color);
-  --color-secondary: var(--secondary-color);
-  --color-accent: var(--accent-color);
-  --color-clinic-bg: var(--bg-light);
-  --color-clinic-text: var(--text-dark);
+  --color-primary: #1B4332;
+  --color-secondary: #2D6A4F;
+  --color-accent: #081C15;
+  --color-clinic-bg: #F7F5F2;
+  --color-clinic-text: #1B4332;
 }
 
 :root {
-  /* === PALETA VETERINÁRIA — VERDE ESCURO (CONTRASTE MÁXIMO) === */
-  --primary-color: #1A4D35;     /* Verde Escuro — Legibilidade 100% */
-  --secondary-color: #2D6A4F;   /* Verde Médio */
-  --accent-color: #081C15;      /* Verde Quase Preto — Texto Principal */
-  --bg-light: #F7F5F2;          /* Off-white Papel — Conforto Visual */
-  --text-dark: #081C15;         /* Texto Black para visibilidade máxima */
+  --primary-color: #1B4332;
+  --bg-light: #F7F5F2;
+  --text-dark: #1B4332;
+  --amber-warm: #D4A373;
 }
 
-/* Scrollbar Customizada */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -33,7 +29,7 @@
 
 ::-webkit-scrollbar-thumb {
   background: var(--primary-color);
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 @layer base {
@@ -42,44 +38,48 @@
   }
   
   body {
-    /* Garantir que nada tenha opacidade baixa que dificulte a leitura */
-    @apply bg-clinic-bg text-clinic-text font-sans antialiased font-medium;
+    @apply bg-clinic-bg text-clinic-text font-sans antialiased;
+    color: #1B4332;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-black; /* Black font for clarity */
-  }
-  
-  p, span, li, a {
-    @apply font-bold; /* Bold for all text as requested */
+  h1, h2, h3, h4 {
+    @apply font-serif;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary text-white font-sans tracking-widest uppercase transition-all duration-300 hover:bg-black hover:shadow-2xl active:scale-95 px-10 py-5 flex items-center justify-center font-black;
+    @apply bg-primary text-white font-sans font-bold tracking-widest uppercase transition-all duration-300 hover:bg-black hover:shadow-xl active:scale-95 px-8 py-4 flex items-center justify-center rounded-xl;
   }
   
   .section-padding {
-    @apply py-24 px-10 md:px-20;
+    @apply py-20 px-6 md:px-12 lg:px-20;
   }
 
   .section-title {
-    @apply text-5xl md:text-7xl lg:text-9xl font-serif mb-12 tracking-tighter leading-[1.05] text-clinic-text uppercase;
+    @apply text-4xl md:text-5xl lg:text-7xl font-serif mb-8 leading-tight text-clinic-text;
   }
 
   .section-subtitle {
-    @apply text-xs md:text-sm uppercase tracking-[0.6em] text-primary mb-6 block font-black border-l-4 border-primary pl-4;
+    @apply text-[10px] md:text-xs uppercase tracking-[0.4em] text-secondary mb-4 block font-bold;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
   }
 }
 
-/* Animação de Pulso para o WhatsApp */
 @keyframes pulse-whatsapp {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-  70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
   100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 .animate-pulse-whatsapp {
   animation: pulse-whatsapp 2s infinite;
+}
+
+/* Custom shadow for premium feel */
+.shadow-premium {
+  box-shadow: 0 25px 50px -12px rgba(27, 67, 50, 0.15);
 }
