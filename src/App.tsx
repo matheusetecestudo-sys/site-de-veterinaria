@@ -20,7 +20,8 @@ import {
   Mail,
   Instagram,
   Facebook,
-  Linkedin
+  Linkedin,
+  Plus
 } from 'lucide-react';
 
 const WhatsAppIcon = ({ size = 20, className = "" }) => (
