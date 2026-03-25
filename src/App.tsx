@@ -1,4 +1,4 @@
-// Deployment: 2026-03-25T18:35:00Z - Final V3 Premium
+// Deployment: 2026-03-25T18:40:00Z - Luxury Hero + Matching Logo Loader
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -39,7 +39,7 @@ const SERVICES = [
   {
     id: "01",
     title: "Medicina do Futuro",
-    description: "Equipamentos diagnósticos de padrão internacional com biometria e IA para laudos em tempo real.",
+    description: "Equipamentos diagnósticos de padrão internacional para laudos em tempo real e cirurgias assistidas.",
     image: "https://images.unsplash.com/photo-1544450175-752171242305?q=80&w=1200",
     badge: "Alta Tecnologia",
     rating: "4.9/5.0 — 2.4k+ Atendimentos"
@@ -146,12 +146,18 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-clinic-bg font-sans selection:bg-primary selection:text-white">
-      {/* Loading Screen */}
+      {/* Loading Screen matching Header Logo style */}
       <AnimatePresence>
         {isLoading && (
           <motion.div exit={{ opacity: 0, scale: 1.1 }} transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }} className="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center p-10">
-            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1.5, repeat: Infinity }} className="text-8xl mb-6 text-primary">🐾</motion.div>
-            <h2 className="font-serif text-5xl font-bold tracking-[0.4em] text-primary uppercase">{CLIENT_CONFIG.name}</h2>
+             <motion.div 
+               animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }} 
+               transition={{ duration: 2, repeat: Infinity }} 
+               className="w-24 h-24 rounded-3xl bg-primary text-white flex items-center justify-center shadow-2xl mb-8"
+             >
+                <PawPrint size={50} />
+             </motion.div>
+            <h2 className="font-serif text-5xl font-black tracking-[0.4em] text-primary uppercase">{CLIENT_CONFIG.name}</h2>
           </motion.div>
         )}
       </AnimatePresence>
@@ -167,7 +173,7 @@ export default function App() {
       <nav className={`fixed w-full z-[80] transition-all duration-700 ${isScrolled ? 'top-6 px-10' : 'top-0 px-0'}`}>
         <div className={`max-w-7xl mx-auto px-10 py-5 transition-all flex justify-between items-center ${isScrolled ? 'mx-auto rounded-[2rem] border border-white/50 bg-white/80 backdrop-blur-xl shadow-2xl' : 'bg-transparent'}`}>
           <a href="#início" className="flex items-center gap-4 group">
-            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all bg-primary text-white shadow-xl group-hover:rotate-12`}>
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all bg-primary text-white shadow-xl group-hover:rotate-1group-hover:scale-105`}>
                <PawPrint size={26} />
             </div>
             <div className="flex flex-col">
@@ -209,12 +215,12 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* HERO cinematic V3 */}
+      {/* HERO cinematic - Updated with niche-perfect imagery */}
       <section id="início" className="relative h-screen flex items-center pt-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1579619573010-0925c43d78c3?q=80&w=1400&auto=format&fit=crop" 
-            alt="Elite Veterinary Care" 
+            src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=1600&auto=format&fit=crop" 
+            alt="Veterinary Excellence" 
             className="w-full h-full object-cover brightness-[0.75] animate-ken-burns"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/30 to-transparent" />
@@ -225,10 +231,10 @@ export default function App() {
                <Star size={16} fill="currentColor" className="text-amber-500" /> MEDICINA PET DE ALTA PERFORMANCE
             </div>
             <h1 className="text-[4rem] md:text-[8rem] lg:text-[10rem] font-serif text-clinic-text leading-[0.85] font-black tracking-tighter mb-10 text-balance uppercase">
-               O seu Pet <br /> <span className="text-primary italic font-normal">encontra a Arte.</span>
+               Onde o seu Pet <br /> <span className="text-primary italic font-normal">encontra a Arte.</span>
             </h1>
             <p className="text-2xl md:text-3xl text-clinic-text font-black mb-16 max-w-xl leading-tight opacity-70 uppercase tracking-tighter italic">
-               Infraestrutura hospitalar de elite no coração do Itaim Bibi. Atendimento 24h especializado.
+               Hospital Veterinário Elite: Tecnologia e Amor em cada atendimento. Itaim Bibi, 24h.
             </p>
             <div className="flex flex-col sm:flex-row gap-8 items-start">
                <a href={whatsappUrl} className="bg-primary text-white rounded-[2rem] gap-6 shadow-[0_30px_60px_rgba(27,67,50,0.3)] h-24 px-14 text-sm font-black tracking-[0.3em] uppercase flex items-center justify-center hover:bg-black hover:scale-105 transition-all">
@@ -239,7 +245,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SERVICES premium V3 */}
+      {/* SERVICES premium */}
       <section id="serviços" className="py-40 px-6 md:px-12 lg:px-24 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="mb-32">
@@ -284,7 +290,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* EXPERIENCE luxury v3 */}
+      {/* EXPERIENCE luxury */}
       <section id="sobre" className="py-40 bg-clinic-bg px-10">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-32 items-center">
             <div className="relative">
@@ -295,7 +301,7 @@ export default function App() {
 
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }}>
               <span className="section-subtitle">Selo de Qualidade DUNO</span>
-              <h2 className="section-title mb-20">O Melhor para <br /> <span className="text-primary italic font-medium">Quem você Ama.</span></h2>
+              <h2 className="section-title mb-20 text-balance">O Melhor para <br /> <span className="text-primary italic font-medium">Quem você Ama.</span></h2>
               <div className="space-y-16">
                 {[
                   { t: "Plantão Médico 24h", d: "Time de especialistas em cirurgia e internação sempre prontos.", i: <Clock className="text-primary" /> },
@@ -316,7 +322,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* MAP luxury v3 */}
+      {/* MAP luxury */}
       <section id="localização" className="py-40 bg-white px-10">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-24 items-center">
             <div className="lg:col-span-1">
@@ -345,7 +351,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* FAQ luxury v3 */}
+      {/* FAQ luxury */}
       <section className="py-40 bg-clinic-bg px-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-24">
@@ -360,7 +366,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* FOOTER luxury v3 */}
+      {/* FOOTER luxury */}
       <footer className="bg-clinic-text text-white pt-40 pb-20 px-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-24 mb-40">
