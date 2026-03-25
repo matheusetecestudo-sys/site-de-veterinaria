@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { 
-  MessageCircle, 
-  ChevronRight, 
   Star, 
   Award, 
   CheckCircle2, 
@@ -21,13 +19,14 @@ import {
   Heart,
   Stethoscope,
   Activity,
+  Microscope,
+  Baby,
+  Home,
+  Coffee,
+  HeartPulse,
   Syringe,
   Scissors,
-  Coffee,
-  Shield,
-  Zap,
-  Microscope,
-  Baby
+  PawPrint
 } from 'lucide-react';
 
 const WhatsAppIcon = ({ size = 20, className = "" }) => (
@@ -36,174 +35,94 @@ const WhatsAppIcon = ({ size = 20, className = "" }) => (
   </svg>
 );
 
-// === CONFIGURAÇÕES DO CLIENTE ===
 const CLIENT_CONFIG = {
   name: "VidaPet",
   professional: "Dra. Juliana Martins",
-  specialty: "Médica Veterinária & Especialista em Medicina de Pequenos Animais",
-  experience: "15+ anos de dedicação animal",
+  specialty: "Médica Veterinária | CRMV-SP 12345",
   whatsapp: "5511999999999",
-  city: "São Paulo, SP",
-  address: "Av. Brigadeiro Faria Lima, 2000 - Pinheiros, São Paulo",
-  email: "contato@vidapetvet.com.br",
-  about: "Na VidaPet, acreditamos que cada animal merece um cuidado individualizado e amoroso. Combinamos nossa paixão pelos pets com as tecnologias médicas mais avançadas para oferecer diagnósticos precisos e tratamentos eficazes. Nossa clínica é um espaço de calma e segurança para você e seu companheiro.",
+  address: "Av. Faria Lima, 2000 - Pinheiros, SP",
 };
 
 const SERVICES = [
   {
     id: 1,
-    title: "Check-up Preventivo",
-    description: "Exames completos para garantir que a saúde do seu pet esteja sempre em dia.",
-    badge: "Essencial",
-    image: "/images/vet-hero.png",
-    icon: <Stethoscope size={24} />
+    title: "Medicina de Ponta",
+    description: "Laboratório próprio com diagnósticos por imagem de última geração para resultados precisos.",
+    badge: "Alta Tech",
+    image: "https://images.unsplash.com/photo-1579154238328-341ef9798583?q=80&w=800&auto=format&fit=crop",
+    icon: <Microscope size={28} />,
+    featured: true
   },
   {
     id: 2,
-    title: "Cirurgia Avançada",
-    description: "Centro cirúrgico equipado para procedimentos complexos com máxima segurança.",
-    badge: "Alta Tecnologia",
+    title: "Bloco Cirúrgico 24h",
+    description: "Monitoramento intensivo e anestesia inalatória para máxima segurança operatória.",
+    badge: "Hospitalar",
     image: "/images/vet-surgery.png",
-    icon: <Activity size={24} />
+    icon: <Activity size={28} />,
+    featured: false
   },
   {
     id: 3,
-    title: "Exames Laboratoriais",
-    description: "Diagnósticos rápidos e precisos com laboratório próprio de última geração.",
-    badge: "Precisão",
-    image: "https://images.unsplash.com/photo-1579154235602-3c22424597b6?q=80&w=800&auto=format&fit=crop",
-    icon: <Microscope size={24} />
+    title: "Internação Elite",
+    description: "Espaços climatizados com supervisão médica constante e boletins via WhatsApp.",
+    badge: "Conforto",
+    image: "/images/vet-clinic-interior.png",
+    icon: <Home size={28} />,
+    featured: false
   },
   {
     id: 4,
-    title: "Odontologia Veterinária",
-    description: "Cuidado bucal especializado para prevenir doenças e garantir o bem-estar.",
-    badge: "Saúde Bucal",
-    image: "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?q=80&w=800&auto=format&fit=crop",
-    icon: <Zap size={24} />
+    title: "Vacinação & Pediatria",
+    description: "Protocolos vacinais seguros e consultoria para o crescimento saudável dos filhotes.",
+    badge: "Filhotes",
+    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop",
+    icon: <Baby size={28} />,
+    featured: false
   },
   {
     id: 5,
-    title: "Pediatria & Vacinação",
-    description: "Acompanhamento completo desde os primeiros meses com protocolos seguros.",
-    badge: "Cuidado",
-    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop",
-    icon: <Baby size={24} />
+    title: "Odonto & Estética",
+    description: "Cuidado bucal avançado e limpeza técnica para garantir o sorriso e a saúde do seu pet.",
+    badge: "Saúde Total",
+    image: "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?q=80&w=800&auto=format&fit=crop",
+    icon: <Sparkles size={28} />,
+    featured: true
   },
   {
     id: 6,
-    title: "Internação Humanizada",
-    description: "Monitoramento 24h em ambiente acolhedor para uma recuperação tranquila.",
-    badge: "24 Horas",
-    image: "/images/vet-clinic-interior.png",
-    icon: <Heart size={24} />
+    title: "Consultas Especializadas",
+    description: "Cardiologia, Dermatologia e Ortopedia com especialistas em constante atualização.",
+    badge: "Elite",
+    image: "https://images.unsplash.com/photo-1576201836106-cf1758af1c82?q=80&w=800&auto=format&fit=crop",
+    icon: <Stethoscope size={28} />,
+    featured: false
   }
 ];
 
 const TESTIMONIALS = [
   {
     id: 1,
-    name: "Ana Beatriz",
-    text: "A Dra. Juliana cuidou do meu Max como se fosse dela. O atendimento é impecável e as instalações são as melhores que já vi.",
-    role: "Tutora do Max (Golden Retriever)",
+    name: "Carolina Meirelles",
+    text: "O atendimento da VidaPet é diferenciado. A paz que a clínica transmite ajuda muito na recuperação dos pets.",
+    role: "Tutora da Nina (Shihtzu)",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 2,
-    name: "Carlos Eduardo",
-    text: "Levei minha gata em uma emergência e fui atendido na hora. Transparência e competência em cada etapa.",
-    role: "Tutor da Luna (Persa)",
+    name: "Marcos Paulo",
+    text: "Tecnologia de ponta. Fizemos a cirurgia do Thor e o pós-operatório foi perfeito. Gratidão à equipe!",
+    role: "Tutor do Thor (Buldog)",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 3,
-    name: "Fernanda Lima",
-    text: "O laboratório próprio agiliza muito os resultados. VidaPet é sinônimo de tranquilidade para quem ama seus pets.",
-    role: "Tutora do Thor (Buldog)",
+    name: "Renata Oliveira",
+    text: "A melhor clínica de Pinheiros. Transparência total e muito carinho com os animais. Recomendo 100%.",
+    role: "Tutora da Luna (Persa)",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
   }
 ];
-
-const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <div className={`mb-4 border rounded-3xl overflow-hidden transition-all duration-500 ${isOpen ? 'bg-primary/5 border-primary/20 shadow-lg translate-y-[-4px]' : 'bg-white border-primary/5 shadow-sm hover:border-primary/20'}`}>
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center p-8 text-left focus:outline-none"
-      >
-        <span className={`font-serif text-xl transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-clinic-text'}`}>{question}</span>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0, scale: isOpen ? 1.2 : 1 }}
-          className={isOpen ? 'text-primary' : 'text-primary/40'}
-        >
-          <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${isOpen ? 'bg-primary/10' : 'bg-transparent'}`}>
-            <ArrowUp size={20} className={isOpen ? 'rotate-0' : 'rotate-180'} />
-          </div>
-        </motion.div>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden"
-          >
-            <div className="px-8 pb-8 text-clinic-text/60 text-base leading-relaxed border-t border-primary/5 pt-6">
-              {answer}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-const CookieBanner = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent');
-    if (!consent) {
-      const timer = setTimeout(() => setIsVisible(true), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  const accept = () => {
-    localStorage.setItem('cookie-consent', 'true');
-    setIsVisible(false);
-  };
-
-  return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div 
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          className="fixed bottom-6 left-6 right-6 md:left-auto md:right-12 md:max-w-md z-[100] glass-card p-6 rounded-2xl shadow-2xl border border-primary/20 backdrop-blur-2xl"
-        >
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3 text-primary">
-              <ShieldCheck size={24} />
-              <span className="font-serif text-lg font-bold">Privacidade & Cookies</span>
-            </div>
-            <p className="text-xs text-clinic-text/70 leading-relaxed font-sans">
-              Utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa Política de Privacidade para o cuidado do seu pet.
-            </p>
-            <div className="flex gap-4">
-              <button onClick={accept} className="flex-1 bg-primary text-white text-[10px] uppercase tracking-widest font-bold py-3 rounded-xl hover:bg-secondary transition-all">
-                Aceitar e Continuar
-              </button>
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-};
 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -223,357 +142,135 @@ export default function App() {
     };
   }, []);
 
-  const whatsappUrl = `https://wa.me/${CLIENT_CONFIG.whatsapp}?text=${encodeURIComponent("Olá! Gostaria de agendar uma consulta para meu pet.")}`;
+  const whatsappUrl = `https://wa.me/${CLIENT_CONFIG.whatsapp}?text=${encodeURIComponent("Olá! Gostaria de agendar uma consulta para meu pet na VidaPet.")}`;
 
   return (
-    <div className="min-h-screen selection:bg-primary selection:text-white">
-      {/* Cinematic Loading Screen */}
-      <AnimatePresence mode="wait">
+    <div className="min-h-screen selection:bg-primary selection:text-white bg-clinic-bg">
+      {/* Loading Screen */}
+      <AnimatePresence>
         {isLoading && (
           <motion.div
-            key="preloader"
-            initial={{ opacity: 1 }}
-            exit={{ 
-              y: '-100%',
-              transition: { duration: 1, ease: [0.76, 0, 0.24, 1] }
-            }}
-            className="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center overflow-hidden"
+            exit={{ y: '-100%', transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }}
+            className="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center"
           >
-            <div className="relative flex flex-col items-center">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                className="mb-12"
-              >
-                <div className="relative group">
-                  <div className="w-32 h-32 border border-primary/10 rounded-full flex items-center justify-center bg-clinic-bg/50 backdrop-blur-sm shadow-inner overflow-hidden">
-                    <motion.div 
-                      animate={{ 
-                        rotate: [0, 360],
-                      }}
-                      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-0 border-t-2 border-primary/20 rounded-full"
-                    />
-                    <span className="text-6xl text-primary font-light">🐾</span>
-                  </div>
-                  <motion.div
-                    animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.5, 0.2] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    className="absolute -inset-8 bg-primary/5 rounded-full blur-3xl"
-                  />
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 1 }}
-                className="text-center"
-              >
-                <h2 className="font-serif text-5xl text-clinic-text tracking-[0.3em] font-light mb-4 uppercase">{CLIENT_CONFIG.name}</h2>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="h-[1px] w-8 bg-primary/30" />
-                  <p className="text-primary text-[10px] uppercase tracking-[0.6em] font-sans font-bold">Cuidado Animal Premium</p>
-                  <div className="h-[1px] w-8 bg-primary/30" />
-                </div>
-              </motion.div>
-
-              <div className="mt-16 w-64 h-[2px] bg-primary/5 relative overflow-hidden rounded-full">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 2.5, ease: "easeInOut" }}
-                  onAnimationComplete={() => setTimeout(() => setIsLoading(false), 500)}
-                  className="absolute inset-y-0 left-0 bg-primary shadow-[0_0_10px_rgba(45,106,79,0.5)]"
-                />
-              </div>
-            </div>
+            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }} className="text-7xl mb-6">🐾</motion.div>
+            <h2 className="font-serif text-3xl tracking-[0.5em] text-clinic-text uppercase">{CLIENT_CONFIG.name}</h2>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary z-[100] origin-left"
-        style={{ scaleX }}
-      />
+      <motion.div className="fixed top-0 left-0 right-0 h-1.5 bg-primary z-[100] origin-left" style={{ scaleX }} />
 
-      <a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-[90] bg-[#25D366] text-white p-4 rounded-full shadow-[0_10px_25px_rgba(37,211,102,0.3)] animate-pulse-whatsapp flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_15px_30px_rgba(37,211,102,0.4)] group"
-      >
-        <WhatsAppIcon size={32} className="transition-transform group-hover:rotate-12" />
+      {/* WhatsApp Fixed */}
+      <a href={whatsappUrl} target="_blank" rel="noreferrer" className="fixed bottom-8 right-8 z-[90] bg-[#25D366] text-white p-5 rounded-full shadow-2xl animate-pulse-whatsapp hover:scale-110 transition-transform group">
+        <WhatsAppIcon size={32} className="group-hover:rotate-12 transition-transform" />
       </a>
 
-      <AnimatePresence>
-        {isScrolled && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="fixed bottom-28 right-8 z-[90] bg-white text-primary p-4 rounded-full shadow-lg border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
-          >
-            <ArrowUp size={24} />
-          </motion.button>
-        )}
-      </AnimatePresence>
-
-      <nav className={`fixed w-full z-[80] transition-all duration-500 ${isScrolled ? 'bg-white/95 backdrop-blur-xl py-4 shadow-lg border-b border-primary/10' : 'bg-transparent py-8'}`}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center w-full">
-          <a href="#início" className="flex items-center gap-3 group relative py-2">
-            <div className="relative">
-              <div className="w-10 h-10 border border-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary transition-all duration-500">
-                <span className="text-xl group-hover:filter group-hover:brightness-0 group-hover:invert">🐾</span>
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-serif text-2xl font-light tracking-[0.1em] text-clinic-text group-hover:text-primary transition-colors leading-none uppercase">
-                {CLIENT_CONFIG.name}
-              </span>
-              <span className="text-[6px] uppercase tracking-[0.2em] text-primary font-bold mt-1 ml-0.5">
-                Clínica Veterinária
-              </span>
-            </div>
+      {/* Navigation */}
+      <nav className={`fixed w-full z-[80] transition-all duration-500 ${isScrolled ? 'bg-white/95 backdrop-blur-xl py-4 shadow-xl border-b border-primary/10' : 'bg-transparent py-8'}`}>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+          <a href="#início" className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary"><PawPrint size={24} /></div>
+            <span className="font-serif text-3xl font-light tracking-[0.1em] text-clinic-text uppercase">{CLIENT_CONFIG.name}</span>
           </a>
 
-          <div className="hidden lg:flex items-center gap-8 xl:gap-12">
-            <div className="flex items-center gap-6 xl:gap-10">
-              {['Início', 'Sobre', 'Serviços', 'Depoimentos', 'Localização', 'FAQ'].map((item) => (
-                <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
-                  className="text-[11px] uppercase tracking-[0.2em] font-sans font-bold text-clinic-text/80 hover:text-primary transition-all duration-300"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-            <a href={whatsappUrl} className="btn-primary h-12 px-8 text-xs rounded-full flex items-center gap-3 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-0.5">
-              <WhatsAppIcon size={16} /> Agendar Consulta
+          <div className="hidden lg:flex items-center gap-10">
+            {['Sobre', 'Serviços', 'Início', 'Depoimentos', 'Localização'].sort((a,b) => a === 'Início' ? -1 : 1).map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-[10px] uppercase tracking-[0.3em] font-bold text-clinic-text/70 hover:text-primary transition-colors">{item}</a>
+            ))}
+            <a href={whatsappUrl} className="btn-primary h-12 px-8 text-[10px] rounded-xl flex items-center gap-3 shadow-lg">
+              <WhatsAppIcon size={16} /> AGENDAR AGORA
             </a>
           </div>
 
-          <button className="lg:hidden text-clinic-text p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <button className="lg:hidden text-clinic-text" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
           </button>
         </div>
       </nav>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            className="fixed inset-0 z-[70] bg-white pt-32 px-8 lg:hidden flex flex-col items-center justify-center gap-12"
-          >
-            <div className="flex flex-col gap-10 text-center w-full max-w-xs">
-              {['Início', 'Sobre', 'Serviços', 'Depoimentos', 'Localização', 'FAQ'].map((item, i) => (
-                <motion.a 
-                  key={item} 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * i }}
-                  href={`#${item.toLowerCase()}`} 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-3xl font-serif text-clinic-text tracking-tight hover:text-primary transition-all"
-                >
-                  {item}
-                </motion.a>
-              ))}
-              <a href={whatsappUrl} className="btn-primary py-6 rounded-full flex items-center justify-center gap-3">
-                <WhatsAppIcon size={20} /> Agendar Agora
-              </a>
-            </div>
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="fixed inset-0 z-[75] bg-white pt-32 px-8 lg:hidden flex flex-col items-center gap-10">
+            {['Início', 'Sobre', 'Serviços', 'Depoimentos', 'Localização'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsMobileMenuOpen(false)} className="text-3xl font-serif text-clinic-text uppercase">{item}</a>
+            ))}
           </motion.div>
         )}
       </AnimatePresence>
 
-      <section id="início" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-20">
+      {/* Hero Section */}
+      <section id="início" className="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/vet-hero.png"
-            alt="VidaPet — Cuidado Veterinário Premium" 
-            className="w-full h-full object-cover brightness-[0.7] transform scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
+          <img src="/images/vet-hero.png" alt="Hero" className="w-full h-full object-cover brightness-[0.6] scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/98 via-white/40 to-transparent" />
         </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl px-6 py-12 rounded-3xl backdrop-blur-sm bg-white/20 border border-white/30"
-          >
-            <span className="section-subtitle">Especialistas em quem você ama</span>
-            <h1 className="text-5xl md:text-7xl font-serif mb-8 text-clinic-text leading-tight">
-              Excelência e <br />
-              <span className="text-primary italic">Amor Animal</span>
-              <br /> em cada detalhe.
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="max-w-2xl">
+            <span className="text-xs uppercase tracking-[0.4em] font-bold text-primary mb-4 block">Cuidado Animal de Elite</span>
+            <h1 className="text-5xl md:text-8xl font-serif mb-8 text-clinic-text leading-[1.1]">
+              Medicina com <br /> <span className="text-primary italic">Amor Infinito.</span>
             </h1>
-            <p className="text-lg text-clinic-text/80 mb-10 font-sans leading-relaxed max-w-lg">
-              Oferecemos medicina veterinária de elite com atendimento humanizado. Venha conhecer a {CLIENT_CONFIG.name}, onde a saúde do seu pet é nossa prioridade absoluta.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6">
-              <a href={whatsappUrl} className="btn-primary min-w-[280px] rounded-full gap-3 shadow-2xl h-16 text-sm">
-                <WhatsAppIcon size={20} /> Agendar Consulta <ArrowRight size={18} />
-              </a>
-            </div>
-            
-            <div className="mt-12 flex items-center gap-4">
-              <div className="flex -space-x-3">
-                {[1,2,3].map(i => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm">
-                    <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="Tutor" />
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs font-bold text-clinic-text/60 uppercase tracking-widest">
-                +2.000 Pets atendidos com sucesso
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-white relative z-10 -mt-20 mx-6 md:mx-12 rounded-[3rem] shadow-2xl border border-primary/5">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
-          <div className="flex flex-col gap-2">
-            <span className="text-4xl md:text-5xl font-serif font-bold text-primary">15k+</span>
-            <span className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-clinic-text/40">Vidas Salvas</span>
-          </div>
-          <div className="flex flex-col gap-2">
-            <span className="text-4xl md:text-5xl font-serif font-bold text-primary">24h</span>
-            <span className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-clinic-text/40">Plantão Veterinário</span>
-          </div>
-          <div className="flex flex-col gap-2">
-            <span className="text-4xl md:text-5xl font-serif font-bold text-primary">100%</span>
-            <span className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-clinic-text/40">Equipamentos Tech</span>
-          </div>
-          <div className="flex flex-col gap-2">
-            <span className="text-4xl md:text-5xl font-serif font-bold text-primary">Padrão</span>
-            <span className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-clinic-text/40">Acreditação Ouro</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="sobre" className="section-padding bg-clinic-bg overflow-hidden">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl relative">
-              <img 
-                src="/images/vet-doctor.png" 
-                alt={CLIENT_CONFIG.professional} 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
-            </div>
-            
-            <div className="absolute -bottom-8 -right-8 glass-card p-10 rounded-[2rem] hidden md:block max-w-xs shadow-2xl border-white/50 backdrop-blur-2xl">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                  <Award size={28} />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-widest font-bold text-primary leading-tight">Melhor Clínica</p>
-                  <p className="font-serif text-2xl text-clinic-text">Pinheiros</p>
-                </div>
-              </div>
-              <p className="text-sm text-clinic-text/70 italic leading-relaxed">"Tratamos cada pet com o rigor da ciência e o calor do coração."</p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="section-subtitle">Conheça nossa Líder</span>
-            <h2 className="section-title">{CLIENT_CONFIG.professional}</h2>
-            <p className="text-primary font-sans font-bold mb-8 tracking-widest uppercase text-sm border-l-2 border-primary/30 pl-4">{CLIENT_CONFIG.specialty}</p>
-            <div className="space-y-6 text-clinic-text/80 leading-relaxed mb-10 font-sans">
-              <p>{CLIENT_CONFIG.about}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {[
-                  { icon: <CheckCircle2 className="text-primary" />, text: "Medicina Diagnóstica" },
-                  { icon: <CheckCircle2 className="text-primary" />, text: "Cirurgia de Tecidos Moles" },
-                  { icon: <CheckCircle2 className="text-primary" />, text: "Unidade de Terapia Intensiva" },
-                  { icon: <CheckCircle2 className="text-primary" />, text: "Cardiologia Veterinária" }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 bg-white/50 p-3 rounded-2xl border border-primary/5">
-                    {item.icon}
-                    <span className="text-sm font-bold opacity-80">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <a href={whatsappUrl} className="btn-warm px-12 py-6 rounded-full inline-flex items-center gap-3 shadow-xl hover:-translate-y-1 transition-all">
-              Falar com a Dra. Juliana <WhatsAppIcon size={18} />
+            <p className="text-lg text-clinic-text/70 mb-10 max-w-md">Excelência veterinária e infraestrutura hospitalar 24h para quem você mais ama.</p>
+            <a href={whatsappUrl} className="btn-primary inline-flex rounded-xl gap-3 shadow-2xl h-16 px-10 text-[10px] font-bold tracking-[0.2em] hover:-translate-y-1 transition-all">
+              <WhatsAppIcon size={20} /> AGENDAR CONSULTA <ArrowRight size={18} />
             </a>
           </motion.div>
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section className="py-20 max-w-7xl mx-auto px-6 -mt-20 relative z-20">
+        <div className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-14 grid grid-cols-2 lg:grid-cols-4 gap-10 border border-primary/5">
+          {[
+            { l: 'Vidas Salvas', v: '22k+', i: <Heart className="text-primary" /> },
+            { l: 'Plantão 24h', v: 'Total', i: <Clock className="text-primary" /> },
+            { l: 'Tecnologia', v: 'Ponta', i: <Activity className="text-primary" /> },
+            { l: 'Confiança', v: '100%', i: <ShieldCheck className="text-primary" /> }
+          ].map((s, idx) => (
+            <div key={idx} className="flex gap-4 items-center">
+              <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center">{s.i}</div>
+              <div className="flex flex-col">
+                <span className="text-3xl font-serif font-bold text-primary">{s.v}</span>
+                <span className="text-[8px] uppercase tracking-widest font-bold text-clinic-text/40">{s.l}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Services Grid Section - FIXED & 10/10 QUALITY */}
       <section id="serviços" className="section-padding bg-white">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-24 flex flex-col items-center"
-          >
-            <div className="flex items-center gap-2 mb-6 text-primary">
-              <Sparkles size={16} />
-              <span className="uppercase tracking-[0.5em] text-[10px] font-bold">Cuidados Completos</span>
-              <Sparkles size={16} />
-            </div>
-            <h2 className="section-title max-w-3xl">Por que escolher a <span className="text-primary italic">VidaPet</span> para o seu melhor amigo?</h2>
-          </motion.div>
+          <div className="text-center mb-24">
+            <span className="section-subtitle">Nossas Especialidades</span>
+            <h2 className="section-title">Medicina Veterinária <span className="text-primary italic">Avançada</span></h2>
+            <div className="w-20 h-1 bg-primary/10 mx-auto mt-8 rounded-full" />
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {SERVICES.map((service, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {SERVICES.map((s, i) => (
               <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 50 }}
+                key={s.id}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="group relative rounded-[2.5rem] overflow-hidden bg-clinic-bg border border-primary/5 h-[480px] flex flex-col shadow-sm hover:shadow-2xl transition-all duration-500"
+                className={`group relative rounded-[2rem] overflow-hidden bg-white border border-primary/5 h-[480px] flex flex-col shadow-lg hover:shadow-2xl transition-all duration-500 ${s.featured ? "lg:col-span-2 shadow-primary/5" : ""}`}
               >
-                <div className="h-2/3 relative overflow-hidden">
-                  <img 
-                    src={service.image} 
-                    alt={service.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute top-6 left-6">
-                    <span className="bg-primary text-white text-[9px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
-                      {service.badge}
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-clinic-bg via-transparent to-transparent" />
+                <div className="h-1/2 relative overflow-hidden">
+                  <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                  <div className="absolute top-6 left-6 bg-white/40 backdrop-blur-md px-4 py-1.5 rounded-full text-[8px] font-bold uppercase tracking-widest text-clinic-text border border-white/20">{s.badge}</div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent opacity-40" />
                 </div>
-                
-                <div className="p-8 relative flex-1 flex flex-col">
-                  <div className="absolute -top-8 right-8 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 border border-primary/5">
-                    {service.icon}
+                <div className="p-8 flex-1 flex flex-col relative">
+                  <div className="absolute -top-10 right-10 w-20 h-20 bg-primary text-white rounded-2xl shadow-xl flex items-center justify-center group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
+                    {s.icon}
                   </div>
-                  <h3 className="text-2xl font-serif text-clinic-text mb-3">{service.title}</h3>
-                  <p className="text-sm text-clinic-text/60 leading-relaxed mb-6 font-sans">
-                    {service.description}
-                  </p>
-                  <a href={whatsappUrl} className="mt-auto inline-flex items-center gap-2 text-[10px] text-primary hover:gap-4 transition-all uppercase font-bold tracking-[0.2em]">
-                    Saber Mais <ArrowRight size={14} />
+                  <h3 className="text-2xl font-serif mb-4 group-hover:text-primary transition-colors">{s.title}</h3>
+                  <p className="text-sm text-clinic-text/60 leading-relaxed mb-8 flex-1">{s.description}</p>
+                  <a href={whatsappUrl} className="inline-flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-widest border-b border-primary/20 pb-1 w-fit group/btn">
+                    Saiba Mais <ArrowRight size={14} className="group-hover/btn:translate-x-2 transition-transform" />
                   </a>
                 </div>
               </motion.div>
@@ -582,201 +279,91 @@ export default function App() {
         </div>
       </section>
 
-      <section id="depoimentos" className="section-padding bg-primary/5 relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-20 opacity-[0.03] rotate-12 pointer-events-none">
-          <span className="text-[40rem] leading-none">🐾</span>
-        </div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-            <span className="section-subtitle">Vozes de Confiança</span>
-            <h2 className="section-title">O que dizem os tutores</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((testimonial, i) => (
-              <motion.div
-                key={testimonial.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white p-10 rounded-[2.5rem] shadow-xl border border-primary/5 relative flex flex-col h-full"
-              >
-                <div className="absolute -top-4 left-10 text-primary opacity-20">
-                  <Quote size={48} fill="currentColor" />
-                </div>
-                <div className="flex gap-1 mb-6 text-warm">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} fill="currentColor" />
-                  ))}
-                </div>
-                <p className="text-clinic-text/80 italic mb-10 leading-relaxed flex-1">"{testimonial.text}"</p>
-                <div className="flex items-center gap-5 pt-8 border-t border-primary/5">
-                  <div className="relative">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name} 
-                      className="w-16 h-16 rounded-full object-cover border-4 border-primary/10 shadow-md"
-                    />
-                    <div className="absolute -bottom-1 -right-1 bg-primary text-white p-1 rounded-full text-[8px]">🐾</div>
-                  </div>
+      {/* Experience Section */}
+      <section className="section-padding bg-clinic-bg overflow-hidden relative">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}>
+            <div className="relative rounded-[3rem] overflow-hidden shadow-3xl border-[15px] border-white">
+              <img src="/images/vet-clinic-interior.png" alt="Clinical" className="w-full aspect-square object-cover" />
+              <div className="absolute inset-0 bg-primary/10" />
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }}>
+            <span className="section-subtitle">Excelência Técnica</span>
+            <h2 className="section-title">Infraestrutura que seu amiguinho <span className="text-primary italic">merece.</span></h2>
+            <div className="space-y-8 mt-12">
+              {[
+                { t: "Ambiente Controlado", d: "Clínica planejada com feromônios para minimizar o estresse animal.", i: <Coffee /> },
+                { t: "Internação Elite", d: "Boletins via WhatsApp e câmeras para acompanhamento em tempo real.", i: <ShieldCheck /> },
+                { t: "Equipe Specialist", d: "Veterinários em constante atualização internacional para casos complexos.", i: <Award /> }
+              ].map((item, i) => (
+                <div key={i} className="flex gap-6 group">
+                  <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-primary group-hover:text-white transition-all text-primary">{item.i}</div>
                   <div>
-                    <p className="font-serif text-clinic-text font-bold text-xl">{testimonial.name}</p>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">{testimonial.role}</p>
+                    <h4 className="font-serif text-xl mb-1">{item.t}</h4>
+                    <p className="text-sm text-clinic-text/60 leading-relaxed">{item.d}</p>
                   </div>
                 </div>
-              </motion.div>
+              ))}
+            </div>
+            <a href={whatsappUrl} className="btn-primary mt-12 py-5 px-10 rounded-xl text-[10px] font-bold shadow-xl">FALAR COM ESPECIALISTA</a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="section-padding bg-white">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <span className="section-subtitle">Dúvidas</span>
+            <h2 className="section-title">Esclareça suas Perguntas</h2>
+          </div>
+          <div className="space-y-4">
+            {[
+              "Preciso agendar as consultas com antecedência?",
+              "Como funciona o plantão de emergência 24h?",
+              "Quais são os principais exames realizados na clínica?",
+              "A clínica aceita planos de saúde animal?"
+            ].map((q, i) => (
+              <div key={i} className="border-b border-primary/5 py-8 group cursor-pointer">
+                <div className="flex justify-between items-center group-hover:text-primary transition-colors">
+                  <span className="font-serif text-xl">{q}</span>
+                  <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="localização" className="section-padding bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-16 items-stretch">
-            <div className="lg:w-1/3 flex flex-col justify-center">
-              <span className="section-subtitle">Onde Estamos</span>
-              <h2 className="section-title">VidaPet Pinheiros</h2>
-              <p className="text-clinic-text/60 mb-12 leading-relaxed">Estamos localizados em uma região de fácil acesso, com estacionamento próprio e espaço pet-friendly.</p>
-              
-              <div className="space-y-8">
-                <div className="flex gap-6 items-start">
-                  <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shrink-0">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-serif text-xl mb-1">Endereço</h4>
-                    <p className="text-sm text-clinic-text/60 leading-relaxed">{CLIENT_CONFIG.address}</p>
-                  </div>
-                </div>
-                <div className="flex gap-6 items-start">
-                  <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shrink-0">
-                    <Phone size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-serif text-xl mb-1">Telefone</h4>
-                    <p className="text-sm text-clinic-text/60 font-bold">(11) 99999-9999</p>
-                  </div>
-                </div>
-                <div className="flex gap-6 items-start">
-                  <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shrink-0">
-                    <Clock size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-serif text-xl mb-1">Horário de Atendimento</h4>
-                    <p className="text-sm text-clinic-text/60">Seg - Sáb: 08h às 22h</p>
-                    <div className="flex items-center gap-2 mt-2 bg-red-50 text-red-600 px-3 py-1 rounded-full w-fit">
-                      <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest">Emergência 24h</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:w-2/3 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-primary/5 h-[600px] relative">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.06583023063!2d-46.69083282412918!3d-23.566060161476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce579f90be6133%3A0xc682914f6b28bd84!2sAv.%20Brig.%20Faria%20Lima%2C%202000%20-%20Jardim%20Paulistano%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001451-000!5e0!3m2!1spt-BR!2sbr!4v1711310000000!5m2!1spt-BR!2sbr" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                loading="lazy" 
-                title="Mapa VidaPet"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" className="section-padding bg-clinic-bg">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="section-subtitle">Dúvidas Frequentes</span>
-            <h2 className="section-title">Cuidado Transparente</h2>
-          </div>
-
-          <div className="space-y-4">
-            <FAQItem 
-              question="Preciso agendar horário para consultas de rotina?" 
-              answer="Recomendamos o agendamento prévio para garantir um tempo adequado para a avaliação completa do seu pet, mas atendemos casos urgentes sem agendamento prioritário."
-            />
-            <FAQItem 
-              question="Quais vacinas são obrigatórias para o meu filhote?" 
-              answer="Para cães, as vacinas V10, Raiva e Gripe/Leishmaniose são essenciais. Para gatos, indicamos a V4 ou V5 e Raiva. Criamos um cronograma personalizado no primeiro atendimento."
-            />
-            <FAQItem 
-              question="Vocês atendem animais exóticos ou apenas cães e gatos?" 
-              answer="Atualmente somos especialistas focados em medicina felina e canina de pequenos animais, garantindo excelência máxima nestas espécies."
-            />
-            <FAQItem 
-              question="Como funciona o sistema de internação 24h?" 
-              answer="Nossa internação conta com equipe veterinária e auxiliares presentes fisicamente 24 horas por dia, monitoramento por câmeras e relatórios periódicos para os tutores via WhatsApp."
-            />
-          </div>
-        </div>
-      </section>
-
+      {/* Footer */}
       <footer className="bg-accent text-white pt-24 pb-12">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-            <div className="col-span-1 lg:col-span-2">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-white border border-white/20">
-                  <span className="text-3xl">🐾</span>
-                </div>
-                <span className="font-serif text-4xl tracking-tighter uppercase">{CLIENT_CONFIG.name}</span>
-              </div>
-              <p className="text-white/60 max-w-md mb-10 text-lg leading-relaxed">
-                Elevando o padrão da medicina veterinária com ética, tecnologia e muito amor. Sua confiança é nosso maior compromisso em Pinheiros.
-              </p>
-              <div className="flex gap-4">
-                <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300"><Instagram size={22} /></a>
-                <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300"><Facebook size={22} /></a>
-              </div>
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-4xl text-white">🐾</span>
+              <span className="font-serif text-4xl tracking-tighter uppercase">{CLIENT_CONFIG.name}</span>
             </div>
-
-            <div>
-              <h4 className="font-serif text-2xl mb-8">Nossas Áreas</h4>
-              <ul className="space-y-4 text-white/50 text-sm">
-                <li><a href="#serviços" className="hover:text-primary transition-colors">Medicina Preventiva</a></li>
-                <li><a href="#serviços" className="hover:text-primary transition-colors">Cirurgia Geral</a></li>
-                <li><a href="#serviços" className="hover:text-primary transition-colors">Odontologia</a></li>
-                <li><a href="#serviços" className="hover:text-primary transition-colors">Internação</a></li>
-                <li><a href="#serviços" className="hover:text-primary transition-colors">Exames Laboratoriais</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-serif text-2xl mb-8">Informações</h4>
-              <ul className="space-y-6 text-white/50 text-sm">
-                <li className="flex gap-4">
-                  <MapPin size={22} className="text-primary shrink-0" />
-                  <span>{CLIENT_CONFIG.address}<br />São Paulo - SP</span>
-                </li>
-                <li className="flex gap-4">
-                  <Phone size={22} className="text-primary shrink-0" />
-                  <span>(11) 99999-9999</span>
-                </li>
-                <li className="flex gap-4">
-                  <Clock size={22} className="text-primary shrink-0" />
-                  <span>Seg - Sab: 08:00 - 22:00</span>
-                </li>
-              </ul>
+            <p className="text-white/40 max-w-sm mb-12 text-lg">Elevando o padrão da medicina veterinária com ética, tecnologia e muito amor em São Paulo.</p>
+            <div className="flex gap-4">
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-all"><Instagram size={24} /></a>
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-all"><Facebook size={24} /></a>
             </div>
           </div>
-
-          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] uppercase tracking-[0.3em] text-white/30">
-            <p>© 2026 {CLIENT_CONFIG.name} Clínica Veterinária. Todos os direitos reservados.</p>
-            <div className="flex gap-10">
-              <a href="#" className="hover:text-white transition-colors">Políticas</a>
-              <a href="#" className="hover:text-white transition-colors">Termos</a>
-            </div>
+          <div>
+            <h4 className="font-serif text-xl mb-8">Contatos</h4>
+            <ul className="space-y-6 text-white/40 text-xs tracking-widest">
+              <li className="flex gap-4"><MapPin className="text-primary" /> {CLIENT_CONFIG.address}</li>
+              <li className="flex gap-4"><Phone className="text-primary" /> (11) 99999-9999</li>
+              <li className="flex gap-4"><Clock className="text-primary" /> Plantão Emergencial 24h</li>
+            </ul>
           </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-6 pt-12 border-t border-white/5 text-[9px] uppercase tracking-[0.3em] text-white/20 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p>© 2026 {CLIENT_CONFIG.name} Clínica Veterinária. Todos os direitos reservados.</p>
+          <p>Desenvolvido com excelência para cuidados animais.</p>
         </div>
       </footer>
-
-      <CookieBanner />
     </div>
   );
 }
