@@ -1,3 +1,4 @@
+// Deployment: 2026-03-25T18:30:00Z
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { 
