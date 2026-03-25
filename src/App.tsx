@@ -1,4 +1,4 @@
-// Deployment: 2026-03-25T18:40:00Z - Luxury Hero + Matching Logo Loader
+// Deployment: 2026-03-25T18:45:00Z - FIX Syntax + Tailwind Class
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -157,7 +157,7 @@ export default function App() {
              >
                 <PawPrint size={50} />
              </motion.div>
-            <h2 className="font-serif text-5xl font-black tracking-[0.4em] text-primary uppercase">{CLIENT_CONFIG.name}</h2>
+            <h2 className="font-serif text-5xl font-black tracking-[0.4em] text-primary uppercase text-center">{CLIENT_CONFIG.name}</h2>
           </motion.div>
         )}
       </AnimatePresence>
@@ -173,7 +173,7 @@ export default function App() {
       <nav className={`fixed w-full z-[80] transition-all duration-700 ${isScrolled ? 'top-6 px-10' : 'top-0 px-0'}`}>
         <div className={`max-w-7xl mx-auto px-10 py-5 transition-all flex justify-between items-center ${isScrolled ? 'mx-auto rounded-[2rem] border border-white/50 bg-white/80 backdrop-blur-xl shadow-2xl' : 'bg-transparent'}`}>
           <a href="#início" className="flex items-center gap-4 group">
-            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all bg-primary text-white shadow-xl group-hover:rotate-1group-hover:scale-105`}>
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all bg-primary text-white shadow-xl group-hover:rotate-12 group-hover:scale-105`}>
                <PawPrint size={26} />
             </div>
             <div className="flex flex-col">
@@ -215,7 +215,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* HERO cinematic - Updated with niche-perfect imagery */}
+      {/* HERO cinematic */}
       <section id="início" className="relative h-screen flex items-center pt-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
@@ -231,7 +231,7 @@ export default function App() {
                <Star size={16} fill="currentColor" className="text-amber-500" /> MEDICINA PET DE ALTA PERFORMANCE
             </div>
             <h1 className="text-[4rem] md:text-[8rem] lg:text-[10rem] font-serif text-clinic-text leading-[0.85] font-black tracking-tighter mb-10 text-balance uppercase">
-               Onde o seu Pet <br /> <span className="text-primary italic font-normal">encontra a Arte.</span>
+               O seu Pet <br /> <span className="text-primary italic font-normal">encontra a Arte.</span>
             </h1>
             <p className="text-2xl md:text-3xl text-clinic-text font-black mb-16 max-w-xl leading-tight opacity-70 uppercase tracking-tighter italic">
                Hospital Veterinário Elite: Tecnologia e Amor em cada atendimento. Itaim Bibi, 24h.
@@ -318,7 +318,6 @@ export default function App() {
                 ))}
               </div>
             </motion.div>
-          </div>
         </div>
       </section>
 
